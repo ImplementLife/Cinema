@@ -1,0 +1,19 @@
+@media screen and (max-width: 750px) {
+    .main-content {
+        flex-direction: column;
+    }
+    .main__item-cover {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .main__item.force_hover
+    .main__item-br,
+    .main__item:hover
+    .main__item-br {
+        -webkit-filter: blur(7px) grayscale(90%);
+        filter: blur(7px) grayscale(90%);
+        transition: 0.5s;
+    }
+}
