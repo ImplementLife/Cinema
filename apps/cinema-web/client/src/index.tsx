@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import App from './App';
 import { setupStore } from './redux-toolkit/store';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from "react-router-dom";
 
 const store = setupStore();
 
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 
