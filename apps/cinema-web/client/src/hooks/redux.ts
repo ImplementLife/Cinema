@@ -1,4 +1,4 @@
-import { AppDispatch, RootState } from '../redux-rtk-query/store';
+import { AppDispatch, RootState } from '../redux-toolkit/store';
 import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 
 
