@@ -1,4 +1,4 @@
-import MainPage from "../pages/MainPage";
+import MainPage from "../pages/Public/MainPage";
 import { RouterTypes } from '../models/RouterTypes';
 
 export const publicRoutes: RouterTypes[] = [
