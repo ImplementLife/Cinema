@@ -29,4 +29,5 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapRazorPages();
 });
+
 app.Run();
