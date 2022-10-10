@@ -1,0 +1,51 @@
+.admin {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin a {
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.admin-form {
+    width: 90%;
+    height: auto;
+    text-align: center;
+    color: #ffffffd5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px 40px 40px;
+    padding-top: 30px;
+    background: transparent;
+    background-color: rgba(250, 235, 215, 0.95);
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.form-content{
+    width: 100%;
+    height: auto;
+    display: grid;
+
+    & div {
+        margin-bottom: 20px;
+    }
+}
+
+.form__information {
+    // display: flex;
+    // justify-content: center;
+}
+
+.admin-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
