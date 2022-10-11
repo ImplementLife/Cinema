@@ -1,6 +1,7 @@
 ﻿using CinemaServer.Data;
 using CinemaServer.Data.Interface;
 using CinemaServer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaServer.Services
 {
@@ -9,7 +10,7 @@ namespace CinemaServer.Services
         public List<IMovieDTO> MainCinema(AppDbContext AC)
         {
                                 
-            List<IMovieDTO> listI = new List<IMovieDTO>(AC.Movies.ToList());
+            List<IMovieDTO> listI = new List<IMovieDTO>(AC.Movies.Include(x => x.Tags).ToList());
             
             return listI;
         }
