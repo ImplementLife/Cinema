@@ -1,8 +1,16 @@
+using CinemaServer.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+var ConnectString = builder.Configuration.GetConnectionString("ConnectStringDB");
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(ConnectString);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

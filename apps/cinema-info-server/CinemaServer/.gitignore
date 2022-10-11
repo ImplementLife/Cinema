@@ -5,6 +5,7 @@
 
 bin
 .vs
+appsettings.json
 
 # User-specific files
 *.rsuser

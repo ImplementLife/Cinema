@@ -2019,11 +2019,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\march\\source\\repos\\CinemaSetting\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
+      "projectUniqueName": "C:\\Users\\march\\source\\repos\\Cinema\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
       "projectName": "CinemaServer",
-      "projectPath": "C:\\Users\\march\\source\\repos\\CinemaSetting\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
+      "projectPath": "C:\\Users\\march\\source\\repos\\Cinema\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
       "packagesPath": "C:\\Users\\march\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\march\\source\\repos\\CinemaSetting\\apps\\cinema-info-server\\CinemaServer\\obj\\",
+      "outputPath": "C:\\Users\\march\\source\\repos\\Cinema\\apps\\cinema-info-server\\CinemaServer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

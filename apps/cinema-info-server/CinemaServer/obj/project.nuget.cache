@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iEFeuZgWNKuu31h1oeRhSpCJKw+r2z/MCX8q+WQbKDzRHUcLgjK6jSJSb3fYbR8v8bbkPRL59Uh37bWGiLqN3w==",
+  "dgSpecHash": "I9yxG16QVIDm4GlRl5nBUsy8RdWOFjVemVB1Dblzixe+MHOB1+huV0h+nh82UaC7uJq0p4LDOjn0h3Mbq5aP8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\march\\source\\repos\\CinemaSetting\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
+  "projectFilePath": "C:\\Users\\march\\source\\repos\\Cinema\\apps\\cinema-info-server\\CinemaServer\\CinemaServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\march\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\march\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

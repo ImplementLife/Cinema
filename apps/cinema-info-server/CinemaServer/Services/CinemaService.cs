@@ -6,15 +6,15 @@ namespace CinemaServer.Services
 {
     public class CinemaService:ICinemaService
     {
-        public List<IMovieDTO> MainCinema()
+        public List<IMovieDTO> MainCinema(AppDbContext AC)
         {
-            using AppDbContext AC = new();                       
-            List<IMovieDTO> listI = new List<IMovieDTO>(AC.Movies.ToList());           
+                                
+            List<IMovieDTO> listI = new List<IMovieDTO>(AC.Movies.ToList());
+            
             return listI;
         }
-        public void AddMovie(Movie Movie)
-        {
-            using AppDbContext AC = new();
+        public void AddMovie(AppDbContext AC, Movie Movie)
+        {            
             AC.Movies.Add(Movie);
             AC.SaveChanges();            
         }

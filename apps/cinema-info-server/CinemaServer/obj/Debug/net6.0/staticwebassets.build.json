@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PW9jZ7zXKWTaoMPMHblvPlfOSe37NAjbK4gp97q3d2M=",
+  "Hash": "VZrkcJsivRXUuJ7CjmkDUEfX3V223rfLF/RQ9s//ahc=",
   "Source": "CinemaServer",
   "BasePath": "_content/CinemaServer",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "CinemaServer\\wwwroot",
       "Source": "CinemaServer",
-      "ContentRoot": "C:\\Users\\march\\source\\repos\\CinemaSetting\\apps\\cinema-info-server\\CinemaServer\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\march\\source\\repos\\Cinema\\apps\\cinema-info-server\\CinemaServer\\wwwroot\\",
       "BasePath": "_content/CinemaServer",
       "Pattern": "**"
     }
