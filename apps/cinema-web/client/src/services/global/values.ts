@@ -1,0 +1,1 @@
+export const URL: string = 'https://ilfa.dp.ua:8080';
