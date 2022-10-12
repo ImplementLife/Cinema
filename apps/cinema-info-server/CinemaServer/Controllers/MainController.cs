@@ -1,19 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CinemaServer.Data;
+using CinemaServer.Data.Interface;
+using CinemaServer.Entities;
+using CinemaServer.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaServer.Controllers
 {
     [ApiController]
     public class MainController : Controller
     {
-        [HttpGet("/")]
-        public IActionResult Sesions()
+        CinemaService CinemaService;
+       
+        public MainController(CinemaService cinemaService)
         {
-            return Json("{Film:123,Dic:210},{Film:123,Dic:210},{Film:123,Dic:210}");
+            CinemaService = cinemaService;         
         }
-        [HttpGet("/AllFilms")]
-        public IActionResult AllFilms()
+
+        [HttpGet("/main/movies")]       
+        public IActionResult GetTop10Movie()
+        {            
+            return Json(CinemaService.MainCinema());
+        }
+        [HttpPost("/admin/add")]
+        public IActionResult AddMovie(Movie movie)
         {
-            return Json("{Film:123,Dic:210},{Film:123,Dic:210},{Film:123,Dic:210},{Film:123,Dic:210},{Film:123,Dic:210},{Film:123,Dic:210}");
+            
+            CinemaService.AddRandomMovie();
+            return Json($"Add: Удачно.");
         }
+
     }
 }
