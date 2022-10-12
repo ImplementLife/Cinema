@@ -7,28 +7,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaServer.Controllers
 {
+
     [ApiController]
     public class MainController : Controller
     {
-        CinemaService CinemaService;
-       
+        CinemaService CinemaService;       
         public MainController(CinemaService cinemaService)
         {
             CinemaService = cinemaService;         
         }
-
-        [HttpGet("/main/movies")]       
-        public IActionResult GetTop10Movie()
+        [HttpGet("/Main")]
+        public IActionResult Main()
+        {
+            return Json("Maine");
+        }
+        [HttpGet("/Main/Movies")]       
+        public IActionResult Movies()
         {            
             return Json(CinemaService.MainCinema());
         }
-        [HttpPost("/admin/add")]
-        public IActionResult AddMovie(Movie movie)
-        {
-            
-            CinemaService.AddRandomMovie();
-            return Json($"Add: Удачно.");
-        }
-
     }
 }
