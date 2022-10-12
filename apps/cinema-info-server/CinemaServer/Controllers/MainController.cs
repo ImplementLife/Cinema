@@ -10,29 +10,24 @@ namespace CinemaServer.Controllers
     [ApiController]
     public class MainController : Controller
     {
-        CinemaService CinemaService = new();
-        private readonly AppDbContext _context;
-        public MainController(AppDbContext appDbContext)
+        CinemaService CinemaService;
+       
+        public MainController(CinemaService cinemaService)
         {
-            _context = appDbContext;
+            CinemaService = cinemaService;         
         }
+
         [HttpGet("/main/movies")]       
-        public IActionResult Sesions()
+        public IActionResult GetTop10Movie()
         {            
-            return Json(CinemaService.MainCinema(_context));
+            return Json(CinemaService.MainCinema());
         }
-        [HttpGet("/Add")]
-        public IActionResult AllFilms()
-        {            
-            string nameimg = "NameImg";
-            Random random = new Random();
-            Movie movie = new Movie();
-            movie.Name = random.Next(0, 10000).ToString();
-            movie.Description = random.Next(0, 1000).ToString();
-            movie.DateCreate = DateTime.Now;
-            movie.NameImg = nameimg + random.Next(0, 9999999)+".png";
-            CinemaService.AddMovie(_context,movie);
-            return Json($"Add:{movie}");
+        [HttpPost("/admin/add")]
+        public IActionResult AddMovie(Movie movie)
+        {
+            
+            CinemaService.AddRandomMovie();
+            return Json($"Add: Удачно.");
         }
 
     }

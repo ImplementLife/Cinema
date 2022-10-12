@@ -10,7 +10,7 @@ namespace CinemaServer.Entities
         public string? URLtrailer { get; set; }
         public string? NameImg { get; set; }
         public ICollection<Tag>? Tags { get; set; }
-        public DateTime DateCreate { get; set; }
+        public DateTime? DateCreate { get; set; }
         
     }
 }
