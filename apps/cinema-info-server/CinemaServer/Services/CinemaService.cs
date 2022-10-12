@@ -16,9 +16,9 @@ namespace CinemaServer.Services
             Context = appDb;
         }
 
-        public List<IMovieDTO> MainCinema()
+        public List<IMovieMainPageInfoDTO> MainCinema()
         {                
-            List<IMovieDTO> listI = new List<IMovieDTO>(Context.Movies.Include(x => x.Tags).ToList());            
+            List<IMovieMainPageInfoDTO> listI = new List<IMovieMainPageInfoDTO>(Context.Movies.Include(x => x.Tags).ToList());            
             return listI;
         }
         public void AddMovie(Movie movie)
