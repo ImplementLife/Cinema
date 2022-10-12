@@ -1,5 +1,7 @@
 using CinemaServer.Data;
+using CinemaServer.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(ConnectString);
 });
-var app = builder.Build();
 
+
+builder.Services.AddTransient<CinemaService>();
+
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -27,11 +32,15 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.MapControllers();
 app.MapRazorPages();
+
 app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Main}");
+                pattern: "{controller=Main}"
+                );
+                  
+                
 
 app.UseEndpoints(endpoints =>
 {
