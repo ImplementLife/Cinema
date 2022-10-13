@@ -22,6 +22,78 @@ namespace CinemaServer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("CinemaServer.Data.Entities.Hall", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Places")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Halls");
+                });
+
+            modelBuilder.Entity("CinemaServer.Data.Entities.Session", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("HallId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeSession")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HallId");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("CinemaServer.Data.Entities.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateTicket")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("SessionId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ticket");
+                });
+
             modelBuilder.Entity("CinemaServer.Entities.Movie", b =>
                 {
                     b.Property<int>("Id")
@@ -107,6 +179,36 @@ namespace CinemaServer.Migrations
                     b.ToTable("MovieTag");
                 });
 
+            modelBuilder.Entity("CinemaServer.Data.Entities.Session", b =>
+                {
+                    b.HasOne("CinemaServer.Data.Entities.Hall", "Hall")
+                        .WithMany("Sessions")
+                        .HasForeignKey("HallId");
+
+                    b.HasOne("CinemaServer.Entities.Movie", "Movie")
+                        .WithMany("Sessions")
+                        .HasForeignKey("MovieId");
+
+                    b.Navigation("Hall");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("CinemaServer.Data.Entities.Ticket", b =>
+                {
+                    b.HasOne("CinemaServer.Data.Entities.Session", "Session")
+                        .WithMany()
+                        .HasForeignKey("SessionId");
+
+                    b.HasOne("CinemaServer.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Session");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("MovieTag", b =>
                 {
                     b.HasOne("CinemaServer.Entities.Movie", null)
@@ -120,6 +222,16 @@ namespace CinemaServer.Migrations
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CinemaServer.Data.Entities.Hall", b =>
+                {
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("CinemaServer.Entities.Movie", b =>
+                {
+                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

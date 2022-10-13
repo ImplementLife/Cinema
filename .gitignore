@@ -1,3 +1,9 @@
 .idea
 .git
 .vs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013131507_Add_Hall_And_Session.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013131507_Add_Hall_And_Session.Designer.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013131917_Correct-Migration.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013131917_Correct-Migration.Designer.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013132817_Create_Ticket.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221013132817_Create_Ticket.Designer.cs

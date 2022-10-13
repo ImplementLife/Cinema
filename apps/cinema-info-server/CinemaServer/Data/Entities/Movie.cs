@@ -1,4 +1,5 @@
-﻿using CinemaServer.Data.Interface;
+﻿using CinemaServer.Data.Entities;
+using CinemaServer.Data.Interface;
 
 namespace CinemaServer.Entities
 {
@@ -11,6 +12,7 @@ namespace CinemaServer.Entities
         public int TimeAsMinutes { get; set; }
         public string? NameImg { get; set; }
         public ICollection<Tag>? Tags { get; set; }
+        public ICollection<Session>? Sessions { get; set; }
         public DateTime? DateCreate { get; set; }
         
     }
