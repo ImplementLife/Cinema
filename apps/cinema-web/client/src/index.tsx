@@ -5,6 +5,8 @@ import App from './App';
 import { setupStore } from './redux-toolkit';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './services/global/theme';
 
 const store = setupStore();
 
@@ -14,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </BrowserRouter>
   </Provider>
 );
