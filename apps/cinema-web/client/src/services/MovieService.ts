@@ -1,13 +1,13 @@
 import { URL } from './global/values';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import { PreviewMovieTypes } from '../models/PreviewMovieTypes';
+import { IPreviewMovieDTO } from '../models/MovieDTO';
 
 export const movieAPI = createApi({
   reducerPath:'movieAPI',
   baseQuery: fetchBaseQuery({baseUrl: URL}),
   tagTypes: ['Movie'],
   endpoints: (build) => ({
-    fetchPreviewMovie: build.query<PreviewMovieTypes[], string> ({
+    fetchPreviewMovie: build.query<IPreviewMovieDTO[], string> ({
       query: () => ({
         url: '/main/movies',
       })

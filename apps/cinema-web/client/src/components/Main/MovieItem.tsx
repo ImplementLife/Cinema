@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { PreviewMovieTypes } from '../../models/PreviewMovieTypes';
 import { URL } from '../../services/global/values';
 import { Link } from 'react-router-dom';
+import { IPreviewMovieDTO } from '../../models/MovieDTO';
 
 interface IMovieItemProps {
-  movie: PreviewMovieTypes;
+  movie: IPreviewMovieDTO;
 }
 
 const MovieItem: FC<IMovieItemProps> = ({movie}) => {
