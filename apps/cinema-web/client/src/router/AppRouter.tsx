@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Routes, Route } from "react-router-dom";
-import { publicRoutes } from './router';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { publicRoutes, adminRoutes } from './router';
 
 const AppRouter: FC = () => {
   return (
@@ -12,6 +12,17 @@ const AppRouter: FC = () => {
           path={route.path}
         />
       )}
+      {adminRoutes.map(route =>
+        <Route
+          element={<route.element/>}
+          key={route.path}
+          path={route.path}
+        />
+      )}
+      <Route
+        path="*"
+        element={<Navigate to="/main" replace />}
+      />
     </Routes>
   );
 };
