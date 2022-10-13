@@ -30,11 +30,21 @@ namespace CinemaServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AllPlaces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Columns")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Places")
+                    b.Property<int>("Rows")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
