@@ -13,6 +13,11 @@ export interface IPreviewMovieDTO {
   nameImg: string;
 }
 
+export interface IMovieAdminTable {
+  id: number;
+  name: string;
+}
+
 export interface ITagDTO {
   name: string;
   id: number;
