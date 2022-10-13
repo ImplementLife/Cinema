@@ -16,15 +16,21 @@ namespace CinemaServer.Services
             Context = appDb;
         }
 
-        public List<IMovieDTO> MainCinema()
+        public List<IMovieMainPageInfoDTO> MainCinema()
         {                
-            List<IMovieDTO> listI = new List<IMovieDTO>(Context.Movies.Include(x => x.Tags).ToList());            
+            List<IMovieMainPageInfoDTO> listI = new List<IMovieMainPageInfoDTO>(Context.Movies.Include(x => x.Tags).ToList());            
             return listI;
         }
-        public void AddMovie(Movie Movie)
+        public void AddMovie(Movie movie)
         {
-            Movie.DateCreate = DateTime.Now;
-            Context.Movies.Add(Movie);
+            List<Tag> AddingNewTags = movie.Tags.Where(x => x.Id == 0).ToList();
+            if (AddingNewTags.Count > 0)
+            {
+                Context.Tags.AddRange(AddingNewTags);
+                Context.SaveChanges();
+            }
+            movie.DateCreate = DateTime.Now;
+            Context.Movies.Update(movie);
             Context.SaveChanges();            
         }
         public void AddRandomMovie()
@@ -37,6 +43,10 @@ namespace CinemaServer.Services
             movie.DateCreate = DateTime.Now;
             movie.NameImg = nameimg + random.Next(0, 9999999) + ".png";
             AddMovie(movie);
+        }
+        public List<ITagDTO> AllTags()
+        {
+            return new(Context.Tags.ToList());
         }
     }
 }

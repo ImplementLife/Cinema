@@ -1,14 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CinemaServer.Entities;
+using CinemaServer.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaServer.Controllers
 {
     [ApiController]
     public class AdminController : Controller
     {
-        [HttpGet("/test")]
-        public IActionResult Autorization()
+        CinemaService CinemaService;
+        public AdminController(CinemaService cinemaService)
         {
-            return View();
+            CinemaService = cinemaService;
         }
+
+        [HttpPost("Admin/AddMovie")]
+        public IActionResult AddMovie(Movie movie)
+        {
+            CinemaService.AddMovie(movie);
+            return Json($"Add: Удачно.");
+        }
+        [HttpGet("Admin/AllTags")]
+        public IActionResult AllTags()
+        {
+            return Json(CinemaService.AllTags());
+        }
+
     }
 }
