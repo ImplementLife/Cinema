@@ -18,11 +18,12 @@
 body {
     width: 100%;
     height: auto;
-    background: url('/src/Img/main.jpg') no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-position: 0 0;
-    background-attachment: fixed;
+    // background: url('/src/pictures/img/main.jpg') no-repeat;
+    // background-position: center;
+    // background-size: cover;
+    // background-position: 0 0;
+    // background-attachment: fixed;
+    background-color: #2b2b37;
     position: relative;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
