@@ -70,5 +70,16 @@ namespace CinemaServer.Services
         {
             return new(Context.Halls.ToList());
         }
+        public List<IMovieMainPageInfoDTO<ITagDTO>> AllMovie()
+        {
+            var list = Context.Movies.ToList();
+            MovieConvertor MC = new();
+            List<IMovieMainPageInfoDTO<ITagDTO>> ListDTO = new();
+            foreach (Movie movie in list)
+            {
+                ListDTO.Add(MC.Convert(movie));
+            }
+            return ListDTO;
+        }
     }
 }
