@@ -1,13 +1,17 @@
 ﻿using CinemaServer.Data;
-using CinemaServer.Data.Interface;
+using CinemaServer.Data.Convertor;
+using CinemaServer.Data.DTO;
+using CinemaServer.Data.DTO.InterfaceDTO;
 using CinemaServer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CinemaServer.Services
 {
-    
+
     public class CinemaService:ICinemaService
     {
         private readonly AppDbContext Context;
@@ -16,10 +20,16 @@ namespace CinemaServer.Services
             Context = appDb;
         }
 
-        public List<IMovieMainPageInfoDTO> MainCinema()
-        {                
-            List<IMovieMainPageInfoDTO> listI = new List<IMovieMainPageInfoDTO>(Context.Movies.Include(x => x.Tags).ToList());            
-            return listI;
+        public List<IMovieMainPageInfoDTO<ITagDTO>> MainCinema()
+        {
+            MovieConvertor MC = new();
+            var list = Context.Movies.Include(x => x.Tags).ToList();
+            List<IMovieMainPageInfoDTO<ITagDTO>> ListDTO =new();            
+            foreach (Movie movie in list)
+            {
+               ListDTO.Add(MC.Convert(movie));
+            }
+            return ListDTO;
         }
         public void AddMovie(Movie movie)
         {

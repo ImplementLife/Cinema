@@ -1,4 +1,6 @@
-﻿namespace CinemaServer.Entities
+﻿using CinemaServer.Data.DTO.InterfaceDTO;
+
+namespace CinemaServer.Entities
 {
     public class Tag : ITagDTO
     {
