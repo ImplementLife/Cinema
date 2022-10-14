@@ -1,5 +1,4 @@
 ﻿using CinemaServer.Data;
-using CinemaServer.Data.Interface;
 using CinemaServer.Entities;
 using CinemaServer.Services;
 using Microsoft.AspNetCore.Mvc;

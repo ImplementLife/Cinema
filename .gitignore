@@ -9,3 +9,5 @@
 /apps/cinema-info-server/CinemaServer/Migrations/20221013132817_Create_Ticket.Designer.cs
 /apps/cinema-info-server/CinemaServer/Migrations/20221013133726_Correct-Hall-Table.cs
 /apps/cinema-info-server/CinemaServer/Migrations/20221013133726_Correct-Hall-Table.Designer.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221014060205_SessionCorrect.Designer.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221014060205_SessionCorrect.cs

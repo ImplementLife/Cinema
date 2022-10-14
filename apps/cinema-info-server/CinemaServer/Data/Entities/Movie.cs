@@ -4,7 +4,7 @@ using CinemaServer.Data.Entities;
 
 namespace CinemaServer.Entities
 {
-    public class Movie : IMovieMainPageInfoDTO<Tag> 
+    public class Movie 
     {
         public int Id { get; set; }
         public string Name { get; set; }

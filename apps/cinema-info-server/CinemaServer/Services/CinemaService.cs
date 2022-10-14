@@ -2,6 +2,7 @@
 using CinemaServer.Data.Convertor;
 using CinemaServer.Data.DTO;
 using CinemaServer.Data.DTO.InterfaceDTO;
+using CinemaServer.Data.Entities;
 using CinemaServer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +23,14 @@ namespace CinemaServer.Services
 
         public List<IMovieMainPageInfoDTO<ITagDTO>> MainCinema()
         {
-            MovieConvertor MC = new();
-            var list = Context.Movies.Include(x => x.Tags).ToList();
+            MovieConvertor MC = new();            
+            var list = Context.Movies
+                .Include(x => x.Sessions)
+                .Include(x => x.Tags)
+                .Where(x => x.Sessions.Count > 0)
+                .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
+                .ToList();
+
             List<IMovieMainPageInfoDTO<ITagDTO>> ListDTO =new();            
             foreach (Movie movie in list)
             {
@@ -34,6 +41,7 @@ namespace CinemaServer.Services
         public void AddMovie(Movie movie)
         {
             List<Tag> AddingNewTags = movie.Tags.Where(x => x.Id == 0).ToList();
+                        
             if (AddingNewTags.Count > 0)
             {
                 Context.Tags.AddRange(AddingNewTags);

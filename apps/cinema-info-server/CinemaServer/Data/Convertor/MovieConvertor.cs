@@ -13,11 +13,12 @@ namespace CinemaServer.Data.Convertor
 
         public DTOMainInfoMovie Convert(Movie movie)
         {
+            
             DTOMainInfoMovie dTOMovie = new();
             dTOMovie.Id = movie.Id;
             dTOMovie.Name = movie.Name;
-            dTOMovie.NameImg = movie.NameImg;           
-            dTOMovie.DateCreate = movie.DateCreate;
+            dTOMovie.NameImg = movie.NameImg;
+            dTOMovie.Sessions = new List<ISessionDTO>(movie.Sessions);
             dTOMovie.Tags = new List<ITagDTO>(movie.Tags);
             return dTOMovie;
         }

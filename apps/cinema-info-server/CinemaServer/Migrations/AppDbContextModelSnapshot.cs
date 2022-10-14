@@ -66,7 +66,10 @@ namespace CinemaServer.Migrations
                     b.Property<int?>("MovieId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("TimeSession")
+                    b.Property<DateTime>("ShowEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ShowStartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
