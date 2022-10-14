@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Table,  TableContainer, TableFooter, TablePagination, TableRow, Paper} from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import {pageSlice} from '../../redux-toolkit/reducers/AdminTableSlice';
+import {pageSlice} from '../../redux-toolkit/reducers/AdminPageSlice';
 import { IMovieAdminTable } from '../../models/MovieDTO';
 
 interface IAdminTable {
@@ -30,28 +30,34 @@ const AdminTable: FC<IAdminTable> = ({children, rows}) => {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer 
+      component={Paper}
+      sx={{
+        backgroundColor: 'secondary.dark',
+        padding: '10px',
+      }}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
 
         {children}
 
         <TableFooter>
           <TableRow>
+            {rows && 
             <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+            rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+            colSpan={3}
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            SelectProps={{
+              inputProps: {
+                'aria-label': 'rows per page',
+              },
+              native: true,
+            }}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />} 
           </TableRow>
         </TableFooter>
       </Table>

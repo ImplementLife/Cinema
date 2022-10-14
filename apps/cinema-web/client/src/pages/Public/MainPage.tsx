@@ -13,11 +13,11 @@ const MainPage: FC = () => {
       {isLoading && 
         <Loader/>
       }
-      {error && 
+      {/* {error && 
         <Error>
             Error to load data from server
         </Error>
-      }
+      } */}
       {movies && movies.map( movie =>
           <MovieItem
             key={movie.id}

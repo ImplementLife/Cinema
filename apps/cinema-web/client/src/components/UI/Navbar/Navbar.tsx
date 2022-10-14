@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import {Link} from "react-router-dom";
+import { ButtonGroup, Button } from '@mui/material';
 
 
 const Navbar: FC = () => {
@@ -8,9 +9,14 @@ const Navbar: FC = () => {
       <Link to='/main'>
         <div className='navbar-logo'></div>
       </Link>
-      <div className='navbar-items'>
-        <Link to='/main'>Main</Link>
-      </div>
+      <ButtonGroup>
+        <Link to='/main'>
+          <Button>Main</Button>
+        </Link>
+        <Link to='/admin/movies'>
+          <Button>Admin panel</Button>
+        </Link>
+      </ButtonGroup>
     </div>
   );
 }

@@ -11,6 +11,11 @@ const AdminLyout: FC<IAdminLyoutProps> = ({children}) => {
       <Box sx={{
           backgroundColor: 'secondary.dark',
           padding: '10px',
+          borderRadius: '10px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
         }}>
         {children}
       </Box>
