@@ -20,7 +20,7 @@ namespace CinemaServer.Services
         {
             Context = appDb;
         }
-
+        
         public List<IMovieMainPageInfoDTO<ITagDTO>> MainCinema()
         {
             MovieConvertor MC = new();            
@@ -65,6 +65,10 @@ namespace CinemaServer.Services
         public List<ITagDTO> AllTags()
         {
             return new(Context.Tags.ToList());
+        }
+        public List<IHallDTO> AllHall()
+        {
+            return new(Context.Halls.ToList());
         }
     }
 }

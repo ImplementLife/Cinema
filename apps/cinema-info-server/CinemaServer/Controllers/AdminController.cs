@@ -24,6 +24,11 @@ namespace CinemaServer.Controllers
         {
             return Json(CinemaService.AllTags());
         }
+        [HttpGet("Admin/AllHall")]
+        public IActionResult AllHall()
+        {
+            return Json(CinemaService.AllHall()) ;
+        }
 
     }
 }

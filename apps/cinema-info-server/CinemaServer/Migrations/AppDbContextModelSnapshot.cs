@@ -47,6 +47,12 @@ namespace CinemaServer.Migrations
                     b.Property<int>("Rows")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("TimeClose")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeOpen")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Halls");

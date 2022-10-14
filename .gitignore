@@ -11,3 +11,5 @@
 /apps/cinema-info-server/CinemaServer/Migrations/20221013133726_Correct-Hall-Table.Designer.cs
 /apps/cinema-info-server/CinemaServer/Migrations/20221014060205_SessionCorrect.Designer.cs
 /apps/cinema-info-server/CinemaServer/Migrations/20221014060205_SessionCorrect.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221014074910_HallCorrect.cs
+/apps/cinema-info-server/CinemaServer/Migrations/20221014074910_HallCorrect.Designer.cs
