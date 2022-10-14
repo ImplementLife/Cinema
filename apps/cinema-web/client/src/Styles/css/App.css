@@ -154,7 +154,7 @@ ul {
   height: 75px;
   border: 10px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  border-left-color: rgba(255, 200, 0, 0.95);
+  border-left-color: #252531;
   -webkit-animation: loader 2s linear infinite;
           animation: loader 2s linear infinite;
 }

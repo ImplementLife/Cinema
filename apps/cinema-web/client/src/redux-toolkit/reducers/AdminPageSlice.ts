@@ -7,7 +7,7 @@ interface IPageState {
 
 const initialState: IPageState = {
   page: 0,
-  rowsPerPage: 10
+  rowsPerPage: 5
 }
 
 export const pageSlice = createSlice({
