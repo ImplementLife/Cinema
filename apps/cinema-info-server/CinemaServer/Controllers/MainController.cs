@@ -8,6 +8,7 @@ namespace CinemaServer.Controllers
 {
 
     [ApiController]
+    
     public class MainController : Controller
     {
         CinemaService CinemaService;       

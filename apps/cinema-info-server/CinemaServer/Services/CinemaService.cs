@@ -39,29 +39,12 @@ namespace CinemaServer.Services
             return ListDTO;
         }
         public void AddMovie(Movie movie)
-        {
-            List<Tag> AddingNewTags = movie.Tags.Where(x => x.Id == 0).ToList();
-                        
-            if (AddingNewTags.Count > 0)
-            {
-                Context.Tags.AddRange(AddingNewTags);
-                Context.SaveChanges();
-            }
+        {            
             movie.DateCreate = DateTime.Now;
             Context.Movies.Update(movie);
             Context.SaveChanges();            
         }
-        public void AddRandomMovie()
-        {
-            string nameimg = "NameImg";
-            Random random = new Random();
-            Movie movie = new Movie();
-            movie.Name = random.Next(0, 10000).ToString();
-            movie.Description = random.Next(0, 1000).ToString();
-            movie.DateCreate = DateTime.Now;
-            movie.NameImg = nameimg + random.Next(0, 9999999) + ".png";
-            AddMovie(movie);
-        }
+        
         public List<ITagDTO> AllTags()
         {
             return new(Context.Tags.ToList());
@@ -70,16 +53,9 @@ namespace CinemaServer.Services
         {
             return new(Context.Halls.ToList());
         }
-        public List<IMovieMainPageInfoDTO<ITagDTO>> AllMovie()
-        {
-            var list = Context.Movies.ToList();
-            MovieConvertor MC = new();
-            List<IMovieMainPageInfoDTO<ITagDTO>> ListDTO = new();
-            foreach (Movie movie in list)
-            {
-                ListDTO.Add(MC.Convert(movie));
-            }
-            return ListDTO;
+        public List<Movie> AllMovie()
+        {   
+            return Context.Movies.ToList();
         }
     }
 }

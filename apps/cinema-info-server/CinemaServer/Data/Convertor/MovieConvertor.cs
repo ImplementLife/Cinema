@@ -8,7 +8,9 @@ namespace CinemaServer.Data.Convertor
     {
         public Movie Convert(DTOMainInfoMovie dto)
         {
-            throw new NotImplementedException();
+           Movie movie = new Movie();
+            return movie;
+           
         }
 
         public DTOMainInfoMovie Convert(Movie movie)

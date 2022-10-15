@@ -1,10 +1,13 @@
-﻿using CinemaServer.Entities;
+﻿using CinemaServer.Data.DTO;
+using CinemaServer.Entities;
 using CinemaServer.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaServer.Controllers
 {
+    
     [ApiController]
+    
     public class AdminController : Controller
     {
         CinemaService CinemaService;

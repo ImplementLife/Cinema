@@ -13,7 +13,7 @@ namespace CinemaServer.Data.Entities
         public int AllPlaces { get; set; }
         public DateTime TimeOpen { get; set; }
         public DateTime TimeClose { get; set; }
-        public ICollection<Session> Sessions { get; set; }
+        public ICollection<Session>? Sessions { get; set; }
 
     }
 }
