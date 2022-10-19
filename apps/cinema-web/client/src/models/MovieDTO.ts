@@ -5,6 +5,15 @@ export interface IMovieDTO {
   image: string[];
   trailerURL: string;
   tags: ITagDTO[];
+  movieDuration: number;
+}
+export interface ICreateMovieDTO {
+  name: string;
+  description: string;
+  trailerURL: string;
+  movieDuration: number;
+  image: string[];
+  tags: ITagDTO[];
 }
 
 export interface IPreviewMovieDTO {

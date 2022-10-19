@@ -1,4 +1,4 @@
-import { URL } from './global/values';
+import { URL } from '../global/url';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
 import { IPreviewMovieDTO } from '../models/MovieDTO';
 
@@ -12,10 +12,11 @@ export const movieAPI = createApi({
         url: '/main/movies',
       })
     }),
-    fetchPreviewImg: build.query<string, string>({
+    fetchPreviewImg: build.query<null, string>({
       query: (image: string) => ({
         url: `/resources/images/${image}`,
       })
-    })
+    }),
+    
   }),
 });
