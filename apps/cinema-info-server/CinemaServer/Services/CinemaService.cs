@@ -1,4 +1,5 @@
 ﻿using CinemaServer.Data;
+
 using CinemaServer.Data.Convertor;
 using CinemaServer.Data.DTO;
 using CinemaServer.Data.DTO.InterfaceDTO;
@@ -22,7 +23,7 @@ namespace CinemaServer.Services
         }
         
         public List<IMovieMainPageInfoDTO<ITagDTO>> MainCinema()
-        {
+        {   
             MovieConvertor MC = new();            
             var list = Context.Movies
                 .Include(x => x.Sessions)
@@ -30,7 +31,6 @@ namespace CinemaServer.Services
                 .Where(x => x.Sessions.Count > 0)
                 .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
                 .ToList();
-
             List<IMovieMainPageInfoDTO<ITagDTO>> ListDTO =new();            
             foreach (Movie movie in list)
             {
@@ -40,8 +40,8 @@ namespace CinemaServer.Services
         }
         public void AddMovie(Movie movie)
         {            
-            movie.DateCreate = DateTime.Now;
-            Context.Movies.Update(movie);
+            movie.DateCreate = DateTime.Now;            
+            Context.Movies.UpdateRange(movie);
             Context.SaveChanges();            
         }
         

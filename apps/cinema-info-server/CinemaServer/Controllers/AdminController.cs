@@ -4,10 +4,8 @@ using CinemaServer.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaServer.Controllers
-{
-    
+{    
     [ApiController]
-    
     public class AdminController : Controller
     {
         CinemaService CinemaService;
