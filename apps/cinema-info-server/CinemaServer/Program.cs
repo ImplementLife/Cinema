@@ -27,6 +27,9 @@ builder.Services.AddSwaggerGen(x =>
        Description = "Test Api"
     });
 });
+builder.Services.AddCors(options => options.AddDefaultPolicy(
+    builder => builder.AllowAnyOrigin()));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +48,7 @@ app.UseSwagger(options =>
 {
     options.SerializeAsV2 = true;
 });
+app.UseCors();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
