@@ -1,6 +1,6 @@
 import { Box, Modal } from '@mui/material';
 import * as React from 'react';
-import { styleForModal } from '../../global/theme';
+import { styleForModal } from '../../../global/theme';
 
 interface IAdminModalProps {
   children: React.ReactElement| React.ReactNode;

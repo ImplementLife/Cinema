@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Button, ButtonGroup, TableBody, TableCell, TableRow, Tooltip, IconButton,} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import AdminLyout from '../../components/Admin/AdminLyout';
-import AdminTable from '../../components/Admin/AdminTable';
+import AdminLyout from '../../components/Admin/re-use/AdminLyout';
+import AdminTable from '../../components/Admin/re-use/AdminTable';
 import LoaderSmall from '../../components/UI/Loader/LoaderSmall';
 import Error from '../../components/UI/Error/Error';
 import { useAppSelector } from '../../hooks/redux';

@@ -1,16 +1,16 @@
 import { FC, useState } from 'react';
 import AdminDescription from '../../components/Admin/AdminDescription';
-import AdminLyout from '../../components/Admin/AdminLyout';
+import AdminLyout from '../../components/Admin/re-use/AdminLyout';
 import AdminFileInput from '../../components/Admin/AdminFileInput';
-import AdminTextField from '../../components/Admin/AdminTextField';
+import AdminTextField from '../../components/Admin/re-use/AdminTextField';
 import AdminDuration from '../../components/Admin/AdminDuration';
 import { Button } from '@mui/material';
 import {createMovieSlice} from '../../redux-toolkit/reducers/createMovieSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
 import AdminTags from '../../components/Admin/AdminTags';
-import AdminBox from '../../components/Admin/AdminBox';
-import AdminModal from '../../components/Admin/AdminModal';
+import AdminBox from '../../components/Admin/re-use/AdminBox';
+import AdminModal from '../../components/Admin/re-use/AdminModal';
 
 const CreateMoviePage: FC = () => {
   const movie = useAppSelector(state => state.createMovieSlice.movie)
