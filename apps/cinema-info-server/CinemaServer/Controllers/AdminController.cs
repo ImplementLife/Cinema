@@ -2,6 +2,11 @@
 using CinemaServer.Entities;
 using CinemaServer.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Text.Json;
+using Newtonsoft.Json;
+using System.Security.Principal;
+using CinemaServer.Data.DTO.InterfaceDTO;
 
 namespace CinemaServer.Controllers
 {    
@@ -14,16 +19,33 @@ namespace CinemaServer.Controllers
             CinemaService = cinemaService;
         }
 
-        [HttpPost("Admin/AddMovie")]
-        public IActionResult AddMovie(Movie movie)
+        [HttpPost("admin/createmovie")]
+        
+        public IActionResult AddMovie(IFormCollection IFC)
         {
+            Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
+            string nameimg = "Not-File";
+            if (IFC.Files.Count > 0)
+            {
+                var file = IFC.Files[0];
+                nameimg=CinemaService.FileStorageService.Upload(file);
+            }
+            movie.NameImg = nameimg;
             CinemaService.AddMovie(movie);
-            return Json($"Add: Удачно.");
+            return Json("Create Complete ^_^ <З ");
         }
-        [HttpGet("Admin/AllTags")]
+       
+        [HttpGet("admin/tags")]
         public IActionResult AllTags()
         {
             return Json(CinemaService.AllTags());
+        }
+        [HttpPost("admin/tags")]
+        public IActionResult SaveTags(Tag tag)
+        {
+            string name = tag.Name;
+            CinemaService.SaveTag(name);
+            return Ok("Vlad Daun");
         }
         [HttpGet("Admin/AllHall")]
         public IActionResult AllHall()
@@ -33,7 +55,12 @@ namespace CinemaServer.Controllers
         [HttpGet("Admin/AllMovie")]
         public IActionResult AllMovie()
         {
-            return Json(CinemaService.AllMovie());
+            List<DTOMainInfoMovie> DTOlist = new();
+            foreach(Movie movie in CinemaService.AllMovie())
+            {
+                DTOlist.Add(CinemaService.MC.Convert(movie));
+            }
+            return Json(DTOlist);
         }
     }
 }

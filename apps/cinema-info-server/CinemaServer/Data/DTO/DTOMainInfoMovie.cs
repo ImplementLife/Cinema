@@ -3,13 +3,11 @@ using CinemaServer.Data.Entities;
 
 namespace CinemaServer.Data.DTO
 {
-    public class DTOMainInfoMovie: IMovieMainPageInfoDTO<ITagDTO>
-    {
-        public ICollection<ITagDTO>? Tags { get; set; }
+    public class DTOMainInfoMovie
+    {       
         public int Id { get; set; }
         public string Name { get; set ; }        
-        public string? NameImg { get ; set ; }
-        public ICollection<ISessionDTO> Sessions { get; set; }
+        public string? NameImg { get ; set ; }        
         
     }
 }

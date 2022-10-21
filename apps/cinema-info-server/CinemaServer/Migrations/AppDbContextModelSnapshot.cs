@@ -127,6 +127,9 @@ namespace CinemaServer.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Duration")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -134,10 +137,7 @@ namespace CinemaServer.Migrations
                     b.Property<string>("NameImg")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TimeAsMinutes")
-                        .HasColumnType("int");
-
-                    b.Property<string>("URLtrailer")
+                    b.Property<string>("trailerURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
