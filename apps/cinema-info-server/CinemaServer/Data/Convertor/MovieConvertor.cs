@@ -10,7 +10,7 @@ namespace CinemaServer.Data.Convertor
     {
         public Movie Convert(DTOMainInfoMovie dto)
         {
-           Movie movie = new Movie();
+           Movie movie = dto;
             return movie;           
         }
 
