@@ -5,8 +5,7 @@ namespace CinemaServer.Services
     public class FileStorageService : IUpload
     {
         public string Upload(IFormFile File)
-        {
-            Random random = new Random();
+        {   
             DateTime dateTime = DateTime.Now;
             string name = dateTime.Ticks.ToString();
             name += File.FileName;

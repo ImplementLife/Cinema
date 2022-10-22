@@ -5,6 +5,8 @@
 
 bin
 obj
+Migrations
+wwwroot/resources/images
 .vs
 
 
