@@ -20,16 +20,8 @@ namespace CinemaServer.Controllers
         }
         [HttpPost("admin/createmovie")]        
         public IActionResult AddMovie(IFormCollection IFC)
-        {
-            Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
-            string nameimg = "Not-File";
-            if (IFC.Files.Count > 0)
-            {
-                var file = IFC.Files[0];
-                nameimg=CinemaService.FileStorageService.Upload(file);
-            }
-            movie.NameImg = nameimg;
-            CinemaService.AddMovie(movie);
+        {           
+            CinemaService.AddMovie(IFC);
             return Json("Create Complete ^_^ <З ");
         }       
         [HttpGet("admin/tags")]
@@ -52,12 +44,7 @@ namespace CinemaServer.Controllers
         [HttpGet("Admin/AllMovie")]
         public IActionResult AllMovie()
         {
-            List<DTOMainInfoMovie> DTOlist = new();
-            foreach(Movie movie in CinemaService.AllMovie())
-            {
-                DTOlist.Add(CinemaService.MC.Convert(movie));
-            }
-            return Json(DTOlist);
+            return Json(CinemaService.movieConvertor.ConvertToList(CinemaService.AllMovie()));
         }
     }
 }
