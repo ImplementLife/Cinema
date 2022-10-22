@@ -4,6 +4,5 @@
     {
         public Base Convert(DTO dto);
         public DTO Convert(Base bases);
-
     }
 }

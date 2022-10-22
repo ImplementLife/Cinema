@@ -6,9 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaServer.Controllers
 {
-
-    [ApiController]
-    
+    [ApiController]    
     public class MainController : Controller
     {
         CinemaService CinemaService;       

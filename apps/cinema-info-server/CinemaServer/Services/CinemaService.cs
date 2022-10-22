@@ -5,6 +5,7 @@ using CinemaServer.Data.DTO;
 using CinemaServer.Data.DTO.InterfaceDTO;
 using CinemaServer.Data.Entities;
 using CinemaServer.Entities;
+using CinemaServer.Services.InterfaceServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -21,8 +22,7 @@ namespace CinemaServer.Services
         public FileStorageService FileStorageService = new();
         public CinemaService (AppDbContext appDb)
         {
-            Context = appDb;
-            
+            Context = appDb;            
         }
         
         public List<DTOMainInfoMovie> MainCinema()
@@ -33,6 +33,7 @@ namespace CinemaServer.Services
                 .Where(x => x.Sessions.Count > 0)
                 .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
                 .ToList();
+
             List<DTOMainInfoMovie> ListDTO =new();            
             foreach (Movie movie in list)
             {
@@ -55,8 +56,7 @@ namespace CinemaServer.Services
             Context.Movies.UpdateRange(movie);
             Context.SaveChanges();
             return movie;
-        }
-        
+        }        
         public List<ITagDTO> AllTags()
         {
             return new(Context.Tags.ToList());
@@ -69,5 +69,6 @@ namespace CinemaServer.Services
         {   
             return Context.Movies.ToList();
         }
+        
     }
 }

@@ -18,9 +18,7 @@ namespace CinemaServer.Controllers
         {
             CinemaService = cinemaService;
         }
-
-        [HttpPost("admin/createmovie")]
-        
+        [HttpPost("admin/createmovie")]        
         public IActionResult AddMovie(IFormCollection IFC)
         {
             Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
@@ -33,8 +31,7 @@ namespace CinemaServer.Controllers
             movie.NameImg = nameimg;
             CinemaService.AddMovie(movie);
             return Json("Create Complete ^_^ <З ");
-        }
-       
+        }       
         [HttpGet("admin/tags")]
         public IActionResult AllTags()
         {
