@@ -26,7 +26,7 @@
         text-decoration: none;
     }
     & :first-child ::after {
-        content: url(/src/Img/arrow.svg);
+        content: url('/src/pictures/svg/arrow.svg');
         position: relative;
         height: 20px;
         width: auto;
