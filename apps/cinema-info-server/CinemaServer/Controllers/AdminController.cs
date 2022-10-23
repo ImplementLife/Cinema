@@ -34,7 +34,7 @@ namespace CinemaServer.Controllers
         {
             string name = tag.Name;
             CinemaService.SaveTag(name);
-            return Ok("Vlad Daun");
+            return Ok();
         }
         [HttpGet("Admin/AllHall")]
         public IActionResult AllHall()

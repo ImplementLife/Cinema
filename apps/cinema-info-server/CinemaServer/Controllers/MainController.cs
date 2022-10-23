@@ -16,8 +16,8 @@ namespace CinemaServer.Controllers
         }
         [HttpGet("/Main")]
         public IActionResult Main()
-        {
-            return Json("Maine");
+        {                      
+            return Json("Main");
         }
         [HttpGet("/Main/Movies")]       
         public IActionResult Movies()

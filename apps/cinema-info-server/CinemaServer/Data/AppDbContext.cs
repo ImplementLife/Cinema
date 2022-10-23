@@ -14,6 +14,15 @@ namespace CinemaServer.Data
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
 
-        public AppDbContext(DbContextOptions options) : base(options){}        
+        public AppDbContext(DbContextOptions options) : base(options){}
+        //UnitTest
+        public AppDbContext()
+        {
+            Database.EnsureCreated();
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer($"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Cinema;Integrated Security=True;");
+        }
     }
 }
