@@ -6,6 +6,7 @@
 bin
 obj
 Migrations
+/apps/cinema-info-server/UnitTestServer
 wwwroot/resources/images
 .vs
 

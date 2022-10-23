@@ -32,9 +32,10 @@ namespace CinemaServer.Data.Convertor
         public List<DTOMainInfoMovie> ConvertToList(List<Movie> movielist)
         {
             List<DTOMainInfoMovie> dTOMovielist = new();
-            DTOMainInfoMovie dTOMovie = new();
+            
             foreach (Movie movie in movielist)
             {
+                DTOMainInfoMovie dTOMovie = new();
                 dTOMovie.Id = movie.Id;
                 dTOMovie.Name = movie.Name;
                 dTOMovie.NameImg = movie.NameImg;
