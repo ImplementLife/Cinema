@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import AdminLyout from '../../components/Admin/re-use/AdminLyout';
 import AdminTable from '../../components/Admin/re-use/AdminTable';
 import LoaderSmall from '../../components/UI/Loader/LoaderSmall';
-import Error from '../../components/UI/Error/Error';
+import Error from '../../components/UI/Alert/Error';
 import { useAppSelector } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
 import { useNavigate } from 'react-router-dom';
@@ -48,9 +48,9 @@ const AdminMoviesPage: FC = () => {
       </AdminLyout>
       {isLoading && <LoaderSmall/>}
       {error && 
-
-        <div>error</div>
-
+        <Error>
+        Error to load data from server
+        </Error>
       }
       {rows && <AdminTable rows={rows}>
         <TableBody>
