@@ -11,6 +11,7 @@ import { adminAPI } from '../../services/AdminService';
 import AdminTags from '../../components/Admin/AdminTags';
 import AdminBox from '../../components/Admin/re-use/AdminBox';
 import AdminModal from '../../components/Admin/re-use/AdminModal';
+import { ITagDTO } from '../../models/MovieDTO';
 
 const CreateMoviePage: FC = () => {
   const movie = useAppSelector(state => state.createMovieSlice.movie)
@@ -34,18 +35,22 @@ const CreateMoviePage: FC = () => {
     dispatch(addNewTag(e.target.value))
   }
 
-  const sendMovie = async () => {
-    await createMovie(movie)
-    .unwrap()
-    .then((payload) => {
-      let formData = new FormData();
-      formData.append('mainImage', movie.image[0]);
-      formData.append('id', payload);
-    })
+  const sendMovie = () => {
+    if (movie.imageFile !== null) {
+      const formData = new FormData();
+      formData.append('image', movie.imageFile);
+      formData.append('movie', JSON.stringify(movie));
+      console.log(formData);
+      createMovie(formData);
+    }
   }
 
   const sendNewTag = () => {
-    createTag(newTag)
+    const obj: ITagDTO = {
+      name: newTag,
+      id: 0
+    }
+    createTag(obj)
     handleClose()
   }
 

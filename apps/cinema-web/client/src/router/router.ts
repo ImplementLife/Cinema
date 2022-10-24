@@ -6,7 +6,7 @@ import UpdateMoviePage from '../pages/Admin/UpdateMoviePage';
 import AdminCinemaPage from '../pages/Admin/AdminCinemaPage';
 
 export const publicRoutes: RouterTypes[] = [
-  {path: '/main', element: MainPage},
+  {path: '/main/movies', element: MainPage},
 ]
 
 export const adminRoutes: RouterTypes[] = [

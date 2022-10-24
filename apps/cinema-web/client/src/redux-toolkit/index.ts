@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { adminAPI } from '../services/AdminService';
 import { movieAPI } from '../services/MovieService';
 import pageSlice from './reducers/AdminPageSlice';
 import createMovieSlice from './reducers/createMovieSlice';
 
 const rootReducer = combineReducers({
   [movieAPI.reducerPath]: movieAPI.reducer,
+  [adminAPI.reducerPath]: adminAPI.reducer,
   pageSlice,
   createMovieSlice,
 })

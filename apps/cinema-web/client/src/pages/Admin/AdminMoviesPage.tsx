@@ -48,9 +48,9 @@ const AdminMoviesPage: FC = () => {
       </AdminLyout>
       {isLoading && <LoaderSmall/>}
       {error && 
-        <Error>
-            Error to load data from server
-        </Error>
+
+        <div>error</div>
+
       }
       {rows && <AdminTable rows={rows}>
         <TableBody>

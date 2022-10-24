@@ -12,11 +12,6 @@ export const movieAPI = createApi({
         url: '/main/movies',
       })
     }),
-    fetchPreviewImg: build.query<null, string>({
-      query: (image: string) => ({
-        url: `/resources/images/${image}`,
-      })
-    }),
     
   }),
 });

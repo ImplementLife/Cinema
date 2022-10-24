@@ -13,12 +13,14 @@ const AdminTags: FC<IAdminTags> = ({openModal}) => {
   const movieTags = useAppSelector(state => state.createMovieSlice.movie.tags)
   const {data: tags} = adminAPI.useGetAllTagsQuery('')
   const dispatch = useAppDispatch()
-  const {setIags} = createMovieSlice.actions
+  const {setTags} = createMovieSlice.actions
+
+  
 
   const onChange = (event: SyntheticEvent<Element, Event>, value: ITagDTO[], reason: AutocompleteChangeReason,) => {
     reason = 'selectOption'
     console.log(value);
-    dispatch(setIags(value))
+    dispatch(setTags(value))
   }
 
   return (
@@ -28,11 +30,16 @@ const AdminTags: FC<IAdminTags> = ({openModal}) => {
       <Autocomplete
           multiple
           id="tags-filled"
-          style={{width: '100%', maxWidth: 388}}
+          style={{width: '100%', maxWidth: 404}}
           onChange={onChange}
           value={movieTags}
           options={tags}
           getOptionLabel={options => options.name}
+          renderOption={(props, option) => 
+              <li {...props} key={option.id}>
+                {option.name}
+              </li>
+              }
           noOptionsText={
             <Button 
               sx={{
