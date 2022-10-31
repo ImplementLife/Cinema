@@ -1,0 +1,308 @@
+.movie__container{
+    height: auto;
+    max-width: 1424px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+.movie__info {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    color: rgba(255, 255, 255, .5);
+}
+//BreaCrumsUI
+.breadcrumbs__list {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    & :first-child {
+        display: flex;
+        align-items: center;
+        text-decoration: underline;
+        color:#fff;
+        cursor: pointer;
+    }
+    & :last-child {
+        color: rgba(255, 255, 255, .5);
+        text-decoration: none;
+    }
+    & :first-child::after {
+        content: url(/src/pictures/svg/arrow.svg);
+        position: relative;
+        height: 16px;
+        width: auto;
+        display: inline-block;
+        width: 10px;
+        margin-left: 8px;
+    }
+}
+.breadcrumbs__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px 8px 10px 8px;
+}
+
+//PosterUI
+.movie__info-colm1 {
+    width: 250px;
+    min-width: 250px;
+    position: sticky;
+    top: 96px;
+    z-index: 2;
+    order: 1;
+    height: calc(100vh - 160px);
+}
+
+.poster__container {
+    position: relative;
+}
+
+.poster__holder {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.poster {
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+    border-radius: 6px;
+}
+
+.trailer__container {
+    height: 55px;
+    line-height: 56px;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,.15);
+    font-weight: 700;
+    padding-left: 30px;
+    cursor: pointer;
+    transition: 250ms;
+    & a {
+        color: #fff;
+    }
+    &::before {
+        content: "";
+        display: block;
+        float: left;
+        top: 17px;
+        position: relative;
+        border: 10px solid rgba(0,0,0,0);
+        border-left: 14px solid #fff;
+        margin-right: 5px;
+        transition: 250ms;
+    }
+}
+
+//DescUI
+.movie__info-colm2 {
+    width: 100%;
+    padding: 0 40px;
+    position: relative;
+    order: 2;
+}
+
+.movie__tittle {
+    font-size: 40px;
+    line-height: 46px;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.movie__credentials {
+    margin-bottom: 30px;
+    & li {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        overflow: hidden;
+    }
+    & .key {
+        float: left;
+        width: 180px;
+        color: #fff;
+    }
+    & .val {
+        color: rgba(255,255,255,.5);
+        float: left;
+        width: calc(100% - 180px);
+    }
+}
+
+.movie__desc {
+    font-size: 16px;
+    line-height: 24px;
+    color: rgba(255,255,255,.5);
+}
+
+//SessionUI
+.movie__info-colm3 {
+    width: 350px;
+    min-width: 350px;
+    order: 3;
+    box-sizing: border-box;
+    position: sticky;
+    right: 0;
+    top: 96px;
+    height: calc(100vh - 180px);
+    background-color: rgba(37, 37, 49, .95);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.movie__info-dates {
+    padding: 16px 8px;
+    margin-top: 0;
+    font-size: 12px;
+    line-height: 16px;
+    color:rgba(255, 255, 255, .5);
+    border-bottom: 1px solid rgba(0, 0, 0,.1);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+
+.movie__info-dates svg {
+    margin-right: 16px;
+    display: block;
+    min-width: 21px;
+}
+
+//MobileUI
+.mobile {
+    display: none;
+}
+
+@media screen and (max-width: 1024px){
+    .movie__container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .movie__info {
+        padding: 0;
+        display: block;
+    }
+
+//mobile mod
+    .movie__info .movie__info-colm1 {
+        display: none;
+    }
+    .movie__info .movie__info-colm3 {
+        position: relative;
+        width: 100%;
+        top: 0;
+        background-color: rgba(37, 37, 49, .95);
+        right: auto;
+        min-width: 100%;
+        padding: 16px 16px 0;
+        height: auto;
+        border-radius: 0;
+    }
+    .movie__info .movie__info-colm2 {
+        width: 100%;
+        margin-left: 0;
+        position: relative;
+        padding: 16px;
+        color: rgba(255, 255, 255, .5);
+        background-color: rgba(37, 37, 49, .95);
+        box-sizing: border-box;
+    }
+    .movie__tittle {
+        display: none;
+    }
+    .movie__credentials {
+        border-bottom: none;
+        margin-bottom: 16px;
+        & .key {
+            float: none;
+            width: 100%;
+            color: rgba(255,255,255,.5);
+            font-size: 12px;
+            line-height: 16px;
+            margin-bottom: 8px;
+        }
+        & .val {
+            float: none;
+            width: 100%;
+            color: #fff;
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+
+//BreaCrumsUI
+    .breadcrumbs__list {
+        background-color: rgba(37, 37, 49, .95);
+    }
+    
+//MobileUI
+    .mobile {
+        display: block;
+    }
+    .mobile__jumbo {
+        width: 100vw;
+        height: 65vw;
+        position: relative;
+        overflow: hidden;
+    }
+    .movie__info .mobile__jumbo .bg {
+        background: url(//source.unsplash.com/Q7PclNhVRI0);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100% 100%;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-position: center;
+        background-size: cover;
+        opacity: .9;
+    }
+    .movie__info .mobile__title {
+        position: relative;
+        padding: 16px 16px 24px;
+        color: rgba(255, 255, 255, .5);
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 700;
+        background-color: rgba(37, 37, 49, .95);
+    }
+    .movie__info .mobile__jumbo .mobile__trailer {
+        width: 64px;
+        height: 64px;
+        background-color: rgba(10, 160, 240, .95);
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        left: calc(50% - 32px);
+        top: calc(50% - 32px);
+    }
+    .movie__info .mobile__jumbo .mobile__trailer::after {
+        content: "";
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 56%;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 14px 0 14px 20px;
+        border-color: rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0) #fff;
+    }
+}
