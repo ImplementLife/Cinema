@@ -9,7 +9,7 @@ using System.Security.Principal;
 using CinemaServer.Data.DTO.InterfaceDTO;
 
 namespace CinemaServer.Controllers
-{    
+{ 
     [ApiController]
     public class AdminController : Controller
     {
@@ -44,7 +44,7 @@ namespace CinemaServer.Controllers
         [HttpGet("Admin/AllMovie")]
         public IActionResult AllMovie()
         {
-            return Json(CinemaService.movieConvertor.ConvertToList(CinemaService.AllMovie()));
+            return Json(CinemaService.movieConvertor.Convert(CinemaService.AllMovie()));
         }
     }
 }

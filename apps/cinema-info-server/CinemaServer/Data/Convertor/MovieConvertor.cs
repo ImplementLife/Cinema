@@ -11,28 +11,25 @@ namespace CinemaServer.Data.Convertor
     {
         public Movie Convert(DTOMainInfoMovie dto)
         {
-           Movie movie = dto;
-            return movie;           
+            Movie movie = dto;
+            return movie;
         }
-
         public DTOMainInfoMovie Convert(Movie movie)
-        {            
+        {
             DTOMainInfoMovie dTOMovie = new();
             dTOMovie.Id = movie.Id;
             dTOMovie.Name = movie.Name;
             dTOMovie.NameImg = movie.NameImg;           
             return dTOMovie;
         }
-        public List<Movie> ConvertToList(List<DTOMainInfoMovie> dtolist)
+        public List<Movie> Convert(List<DTOMainInfoMovie> dtolist)
         {
             List<Movie> movielist = new(dtolist);
             return movielist;
         }
-
-        public List<DTOMainInfoMovie> ConvertToList(List<Movie> movielist)
+        public List<DTOMainInfoMovie> Convert(List<Movie> movielist)
         {
             List<DTOMainInfoMovie> dTOMovielist = new();
-            
             foreach (Movie movie in movielist)
             {
                 DTOMainInfoMovie dTOMovie = new();
@@ -40,7 +37,7 @@ namespace CinemaServer.Data.Convertor
                 dTOMovie.Name = movie.Name;
                 dTOMovie.NameImg = movie.NameImg;
                 dTOMovielist.Add(dTOMovie);
-            }            
+            }
             return dTOMovielist;
         }
     }

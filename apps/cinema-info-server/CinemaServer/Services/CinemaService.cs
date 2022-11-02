@@ -23,18 +23,17 @@ namespace CinemaServer.Services
         public FileStorageService FileStorageService = new();
         public CinemaService (AppDbContext appDb)
         {
-            Context = appDb;            
-        }
-        
+            Context = appDb;
+        }        
         public List<DTOMainInfoMovie> MainCinema()
-        {                         
-            var list = Context.Movies
+        {
+                var list = Context.Movies
                 .Include(x => x.Sessions)
                 .Include(x => x.Tags)
                 .Where(x => x.Sessions.Count > 0)
                 .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
                 .ToList();
-            return movieConvertor.ConvertToList(list);
+            return movieConvertor.Convert(list);
         }
         public Tag SaveTag(string name)
         {
@@ -42,8 +41,7 @@ namespace CinemaServer.Services
             tag.Name = name;
             Context.Add(tag);
             Context.SaveChanges();
-            return tag;
-            
+            return tag;            
         }
         public Movie AddMovie(IFormCollection IFC)
         {
@@ -59,7 +57,7 @@ namespace CinemaServer.Services
             Context.Movies.UpdateRange(movie);
             Context.SaveChanges();
             return movie;
-        }        
+        }
         public List<ITagDTO> AllTags()
         {
             return new(Context.Tags.ToList());
@@ -69,7 +67,7 @@ namespace CinemaServer.Services
             return new(Context.Halls.ToList());
         }
         public List<Movie> AllMovie()
-        {   
+        {
             return Context.Movies.ToList();
         }
         
