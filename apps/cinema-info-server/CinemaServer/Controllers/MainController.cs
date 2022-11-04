@@ -17,6 +17,7 @@ namespace CinemaServer.Controllers
         [HttpGet("/Main")]
         public IActionResult Main()
         {
+            //CinemaService.AutoNamingUpdate();
             return Json("Maine");
         }
         [HttpGet("/Main/Movies")]       

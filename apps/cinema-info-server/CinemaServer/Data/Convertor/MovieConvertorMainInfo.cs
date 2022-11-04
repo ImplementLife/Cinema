@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CinemaServer.Data.Convertor
 {
-    public class MovieConvertor : IBaseConvertor<Movie, DTOMainInfoMovie>
+    public class MovieConvertorMainInfo : IBaseConvertor<Movie, DTOMainInfoMovie>
     {
         public Movie Convert(DTOMainInfoMovie dto)
         {

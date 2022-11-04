@@ -18,12 +18,22 @@ namespace CinemaServer.Controllers
         {
             CinemaService = cinemaService;
         }
-        [HttpPost("admin/createmovie")]        
+        [HttpPost("admin/movie")]        
         public IActionResult AddMovie(IFormCollection IFC)
         {           
             CinemaService.AddMovie(IFC);
             return Json("Create Complete ^_^ <З ");
-        }       
+        }
+        [HttpGet("admin/movie")]
+        public IActionResult GetMovieID(int id)
+        {
+            return Json(CinemaService.GetMovie(id));
+        }
+        [HttpPut("admin/movie")]
+        public IActionResult UpdateMovie(IFormCollection IFC)
+        {
+            return Json(CinemaService.UpdateMovie(IFC));
+        }
         [HttpGet("admin/tags")]
         public IActionResult AllTags()
         {
@@ -31,9 +41,8 @@ namespace CinemaServer.Controllers
         }
         [HttpPost("admin/tags")]
         public IActionResult SaveTags(Tag tag)
-        {
-            string name = tag.Name;
-            CinemaService.SaveTag(name);
+        {            
+            CinemaService.SaveTag(tag.Name);
             return Ok("Vlad Daun");
         }
         [HttpGet("Admin/AllHall")]
@@ -41,10 +50,12 @@ namespace CinemaServer.Controllers
         {
             return Json(CinemaService.AllHall()) ;
         }
-        [HttpGet("Admin/AllMovie")]
+        [HttpGet("Admin/movies")]
         public IActionResult AllMovie()
         {
-            return Json(CinemaService.movieConvertor.Convert(CinemaService.AllMovie()));
+            return Json(CinemaService.AllMovie());
         }
+        
+
     }
 }

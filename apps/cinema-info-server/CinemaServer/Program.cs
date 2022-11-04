@@ -28,7 +28,9 @@ builder.Services.AddSwaggerGen(x =>
     });
 });
 builder.Services.AddCors(options => options.AddDefaultPolicy(
-    builder => builder.AllowAnyOrigin()));
+    builder => builder.AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
 
 var app = builder.Build();
 

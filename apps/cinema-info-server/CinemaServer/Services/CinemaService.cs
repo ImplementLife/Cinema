@@ -19,7 +19,7 @@ namespace CinemaServer.Services
     public class CinemaService:ICinemaService
     {
         private readonly AppDbContext Context;
-        public MovieConvertor movieConvertor = new();
+        public Convertors Convertors = new();
         public FileStorageService FileStorageService = new();
         public CinemaService (AppDbContext appDb)
         {
@@ -33,7 +33,7 @@ namespace CinemaServer.Services
                 .Where(x => x.Sessions.Count > 0)
                 .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
                 .ToList();
-            return movieConvertor.Convert(list);
+            return Convertors.MovieMainInfo.Convert(list);
         }
         public Tag SaveTag(string name)
         {
@@ -66,10 +66,45 @@ namespace CinemaServer.Services
         {
             return new(Context.Halls.ToList());
         }
-        public List<Movie> AllMovie()
+        public List<DTOMainInfoMovie> AllMovie()
         {
-            return Context.Movies.ToList();
+            return Convertors.MovieMainInfo.Convert(Context.Movies.ToList());
         }
-        
+        public DTOAdminUpdate GetMovie(int id)
+        {
+            Movie movie = Context.Movies.Include(x => x.Tags).FirstOrDefault(x => x.Id == id);
+            return Convertors.MovieUpdate.Convert(movie);
+        }
+        public bool UpdateMovie(IFormCollection IFC)
+        {
+            try
+            {
+                Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
+                Movie movieOrigin = Context.Movies.Include(x => x.Tags).Include(x => x.Sessions).FirstOrDefault(x => x.Id == movie.Id);
+                movieOrigin = movie;
+                Context.UpdateRange(movieOrigin);
+                Context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+        public void AutoNamingUpdate()
+        {
+            string naming = "Movie";
+            int countMovie = 0;
+            List<Movie> newmovies = new();
+            foreach (Movie movie in Context.Movies.ToList())
+            {
+                movie.Name = naming + countMovie.ToString();
+                countMovie++;
+                newmovies.Add(movie);
+            }
+            Context.UpdateRange(newmovies);
+            Context.SaveChanges();
+        }
     }
 }
