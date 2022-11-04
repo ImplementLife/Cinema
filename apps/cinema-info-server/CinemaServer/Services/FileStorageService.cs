@@ -5,6 +5,7 @@ namespace CinemaServer.Services
 {
     public class FileStorageService : IUpload
     {
+
         public string Upload(IFormFile File)
         {
             DateTime dateCreate = DateTime.Now;

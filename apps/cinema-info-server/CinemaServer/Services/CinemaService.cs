@@ -30,8 +30,8 @@ namespace CinemaServer.Services
                 var list = Context.Movies
                 .Include(x => x.Sessions)
                 .Include(x => x.Tags)
-                .Where(x => x.Sessions.Count > 0)
-                .Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
+                //.Where(x => x.Sessions.Count > 0)
+                //.Where(x => x.Sessions.Where(x=>x.ShowEndDate>DateTime.Now).Count()>0)
                 .ToList();
             return Convertors.MovieMainInfo.Convert(list);
         }
@@ -46,13 +46,7 @@ namespace CinemaServer.Services
         public Movie AddMovie(IFormCollection IFC)
         {
             Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
-            string nameimg = "Not-File";
-            if (IFC.Files.Count > 0)
-            {
-                var file = IFC.Files[0];
-                nameimg =FileStorageService.Upload(file);
-            }
-            movie.NameImg = nameimg;
+            SaveImg(IFC,ref movie);
             movie.DateCreate = DateTime.Now;            
             Context.Movies.UpdateRange(movie);
             Context.SaveChanges();
@@ -78,11 +72,15 @@ namespace CinemaServer.Services
         public bool UpdateMovie(IFormCollection IFC)
         {
             try
-            {
+            {                
                 Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
                 Movie movieOrigin = Context.Movies.Include(x => x.Tags).Include(x => x.Sessions).FirstOrDefault(x => x.Id == movie.Id);
-                movieOrigin = movie;
-                Context.UpdateRange(movieOrigin);
+                movieOrigin.Name = movie.Name;
+                movieOrigin.Description = movie.Description;
+                movieOrigin.trailerURL = movie.trailerURL;
+                movieOrigin.Duration = movie.Duration;
+                SaveImg(IFC,ref movieOrigin);
+                movieOrigin.Tags = UpdateListTag(movie.Tags.ToList());
                 Context.SaveChanges();
                 return true;
             }
@@ -105,6 +103,30 @@ namespace CinemaServer.Services
             }
             Context.UpdateRange(newmovies);
             Context.SaveChanges();
+        }
+        public List<Tag> UpdateListTag(List<Tag> tags)
+        { 
+            var AllTags = Context.Tags.ToList();
+            List<Tag> TagResult = new();
+            foreach (var tegA in AllTags)
+            {
+                foreach (var teg in tags)
+                {
+                    if (teg.Id == tegA.Id)
+                    {
+                        TagResult.Add(tegA);
+                    }
+                }
+            }
+            return TagResult;
+        }
+        public void SaveImg(IFormCollection IFC,ref Movie movie)
+        {
+            if (IFC.Files.Count > 0)
+            {
+                var file = IFC.Files[0];
+                movie.NameImg = FileStorageService.Upload(file);
+            }
         }
     }
 }

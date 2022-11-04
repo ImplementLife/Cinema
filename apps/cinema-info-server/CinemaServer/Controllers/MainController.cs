@@ -20,10 +20,16 @@ namespace CinemaServer.Controllers
             //CinemaService.AutoNamingUpdate();
             return Json("Maine");
         }
-        [HttpGet("/Main/Movies")]       
+        [HttpGet("/main/movies")]       
         public IActionResult Movies()
         {            
             return Json(CinemaService.MainCinema());
         }
+        [HttpGet("/main/movie")]
+        public IActionResult MovieID(int id)
+        {
+            return Json(CinemaService.GetMovie(id));
+        }
+
     }
 }
