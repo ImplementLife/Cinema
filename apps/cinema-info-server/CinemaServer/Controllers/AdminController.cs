@@ -29,6 +29,11 @@ namespace CinemaServer.Controllers
         {
             return Json(CinemaService.GetMovie(id));
         }
+        [HttpDelete("admin/movie")]
+        public IActionResult DelMovieID(int id)
+        {
+            return Json(CinemaService.DelMovieById(id));
+        }
         [HttpPut("admin/movie")]
         public IActionResult UpdateMovie(IFormCollection IFC)
         {

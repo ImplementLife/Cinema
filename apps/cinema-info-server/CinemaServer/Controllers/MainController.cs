@@ -26,7 +26,7 @@ namespace CinemaServer.Controllers
             return Json(CinemaService.MainCinema());
         }
         [HttpGet("/main/movie")]
-        public IActionResult MovieID(int id)
+        public IActionResult MovieID([FromQuery]int id)
         {
             return Json(CinemaService.GetMovie(id));
         }

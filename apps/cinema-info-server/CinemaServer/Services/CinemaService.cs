@@ -52,6 +52,23 @@ namespace CinemaServer.Services
             Context.SaveChanges();
             return movie;
         }
+        public bool DelMovieById(int id)
+        {
+            var movie = Context.Movies.Include(x=>x.Tags).Include(x=>x.Sessions).FirstOrDefault(x => x.Id == id);
+            if(movie != null)
+            {
+                movie.Tags = new List<Tag>();
+                movie.Sessions = new List<Session>();
+                Context.Remove(movie);                
+                Context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         public List<ITagDTO> AllTags()
         {
             return new(Context.Tags.ToList());
