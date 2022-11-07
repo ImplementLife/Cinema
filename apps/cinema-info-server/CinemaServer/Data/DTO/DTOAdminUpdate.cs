@@ -1,8 +1,9 @@
 ﻿using CinemaServer.Data.DTO.InterfaceDTO;
+using CinemaServer.Entities;
 
 namespace CinemaServer.Data.DTO
 {
-    public class DTOAdminUpdate
+    public class DTOAdminUpdate : Movie
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -10,6 +11,6 @@ namespace CinemaServer.Data.DTO
         public string? trailerURL { get; set; }
         public int? Duration { get; set; }
         public string? NameImg { get; set; }
-        public List<ITagDTO> Tags { get; set; }
+        public List<ITagDTO> Tags { get; set; }        
     }
 }

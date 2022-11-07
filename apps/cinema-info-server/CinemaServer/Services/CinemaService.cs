@@ -43,7 +43,15 @@ namespace CinemaServer.Services
             Context.SaveChanges();
             return tag;            
         }
-        public Movie AddMovie(IFormCollection IFC)
+        public void SaveImg(IFormCollection IFC, ref Movie movie)
+        {
+            if (IFC.Files.Count > 0)
+            {
+                var file = IFC.Files[0];
+                movie.NameImg = FileStorageService.Upload(file);
+            }
+        }
+        public Movie CreateMovie(IFormCollection IFC)
         {
             Movie movie = JsonConvert.DeserializeObject<Movie>(IFC["movie"]);
             SaveImg(IFC,ref movie);
@@ -52,7 +60,7 @@ namespace CinemaServer.Services
             Context.SaveChanges();
             return movie;
         }
-        public bool DelMovieById(int id)
+        public bool DeleteMovieById(int id)
         {
             var movie = Context.Movies.Include(x=>x.Tags).Include(x=>x.Sessions).FirstOrDefault(x => x.Id == id);
             if(movie != null)
@@ -81,7 +89,7 @@ namespace CinemaServer.Services
         {
             return Convertors.MovieMainInfo.Convert(Context.Movies.ToList());
         }
-        public DTOAdminUpdate GetMovie(int id)
+        public DTOAdminUpdate GetMovieById(int id)
         {
             Movie movie = Context.Movies.Include(x => x.Tags).FirstOrDefault(x => x.Id == id);
             return Convertors.MovieUpdate.Convert(movie);
@@ -107,22 +115,8 @@ namespace CinemaServer.Services
             }
             
         }
-        public void AutoNamingUpdate()
-        {
-            string naming = "Movie";
-            int countMovie = 0;
-            List<Movie> newmovies = new();
-            foreach (Movie movie in Context.Movies.ToList())
-            {
-                movie.Name = naming + countMovie.ToString();
-                countMovie++;
-                newmovies.Add(movie);
-            }
-            Context.UpdateRange(newmovies);
-            Context.SaveChanges();
-        }
         public List<Tag> UpdateListTag(List<Tag> tags)
-        { 
+        {
             var AllTags = Context.Tags.ToList();
             List<Tag> TagResult = new();
             foreach (var tegA in AllTags)
@@ -137,13 +131,21 @@ namespace CinemaServer.Services
             }
             return TagResult;
         }
-        public void SaveImg(IFormCollection IFC,ref Movie movie)
+        public void AutoNamingUpdate()
         {
-            if (IFC.Files.Count > 0)
+            string naming = "Movie";
+            int countMovie = 0;
+            List<Movie> newmovies = new();
+            foreach (Movie movie in Context.Movies.ToList())
             {
-                var file = IFC.Files[0];
-                movie.NameImg = FileStorageService.Upload(file);
+                movie.Name = naming + countMovie.ToString();
+                countMovie++;
+                newmovies.Add(movie);
             }
+            Context.UpdateRange(newmovies);
+            Context.SaveChanges();
         }
+        
+        
     }
 }

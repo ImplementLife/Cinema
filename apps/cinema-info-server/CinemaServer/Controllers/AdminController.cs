@@ -21,18 +21,18 @@ namespace CinemaServer.Controllers
         [HttpPost("admin/movie")]        
         public IActionResult AddMovie(IFormCollection IFC)
         {           
-            CinemaService.AddMovie(IFC);
+            CinemaService.CreateMovie(IFC);
             return Json("Create Complete ^_^ <З ");
         }
         [HttpGet("admin/movie")]
         public IActionResult GetMovieID(int id)
         {
-            return Json(CinemaService.GetMovie(id));
+            return Json(CinemaService.GetMovieById(id));
         }
         [HttpDelete("admin/movie")]
         public IActionResult DelMovieID(int id)
         {
-            return Json(CinemaService.DelMovieById(id));
+            return Json(CinemaService.DeleteMovieById(id));
         }
         [HttpPut("admin/movie")]
         public IActionResult UpdateMovie(IFormCollection IFC)
