@@ -22,13 +22,13 @@ const AdminDescription: FC<IAdminDescriptionProps> = ({value}) => {
       <ReactQuill
           id='editor'
           style={{
-            background: "#252531",
+            border:'none',
             color: "white",
             width: "100%",
-            maxWidth: "800px",
-        }}
+            maxWidth: "900px",
+          }}
           value={value}
-          theme='snow'
+          theme ='snow'
           onChange={change}
       />
   );

@@ -1,17 +1,20 @@
 import { Box } from '@mui/material';
-import * as React from 'react';
+import { FC } from 'react';
 
-interface IAdminBoxProps {
+interface IAdminBox {
   children: React.ReactElement| React.ReactNode;
 }
 
-const AdminBox: React.FunctionComponent<IAdminBoxProps> = ({children}) => {
+const AdminBox: FC<IAdminBox> = ({children}) => {
+
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        width: '100%',
+        padding: 1,
         '& > :not(style)': { m: 1 },
       }}
     >

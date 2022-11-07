@@ -9,10 +9,10 @@ import {createMovieSlice} from '../../redux-toolkit/reducers/createMovieSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
 import AdminTags from '../../components/Admin/AdminTags';
+import AdminContainer from '../../components/Admin/re-use/AdminContainer';
 import AdminBox from '../../components/Admin/re-use/AdminBox';
 import AdminModal from '../../components/Admin/re-use/AdminModal';
 import { useNavigate } from 'react-router-dom';
-
 
 const CreateMoviePage: FC = () => {
   const movie = useAppSelector(state => state.createMovieSlice.movie)
@@ -44,6 +44,7 @@ const CreateMoviePage: FC = () => {
     if (movie.id === 0 && movie.imageFile !== null  ) {
       formData.append('image', movie.imageFile);
       formData.append('movie', JSON.stringify(movie));
+      console.log(movie.imageFile);
       createMovie(formData);
     } else {
       if ( movie.imageFile !== null ) {
@@ -69,46 +70,48 @@ const CreateMoviePage: FC = () => {
     <AdminLyout>
       {
         isUpdate === false
-        ? <Typography color='GrayText' variant="h5" gutterBottom>New movie</Typography>
-        : <Typography color='GrayText' variant="h5" gutterBottom>Update movie: {movie.id}</Typography>
+        ? <Typography color='#ffffff80' variant="h5" gutterBottom>New movie</Typography>
+        : <Typography color='#ffffff80' variant="h5" gutterBottom>Update movie: {movie.id}</Typography>
       }
-      <AdminBox>
-        <AdminTextField
-          label='NAME'
-          value={movie.name}
-          setAction={changeName}
-        />
-        <AdminTextField
-          label='TRAILER URL'
-          value={movie.trailerURL}
-          setAction={changeTrailer}
-        />
-        <AdminTags
-          openModal={handleOpen}
-        />
-        <AdminModal
-          status={modal}
-          closeModal={handleClose}
-        >
+      <AdminContainer>
+        <AdminBox>
           <AdminTextField
-            value={newTag.name}
-            label='add new tag name...'
-            setAction={changeNewTag}
+            label='NAME'
+            value={movie.name}
+            setAction={changeName}
           />
-          <Button onClick={sendNewTag}>SEND</Button>
-        </AdminModal>
-
-        {movie.id === 0
-          ?<AdminDuration/>
-          :null
-        }
-
-        <AdminFileInput/>
-      </AdminBox>
+          <AdminTextField
+            label='TRAILER URL'
+            value={movie.trailerURL}
+            setAction={changeTrailer}
+          />
+        </AdminBox>
+        <AdminBox>
+          <AdminTags
+            openModal={handleOpen}
+          />
+          <AdminModal
+            status={modal}
+            closeModal={handleClose}
+          >
+            <AdminTextField
+              value={newTag.name}
+              label='add new tag name...'
+              setAction={changeNewTag}
+            />
+            <Button onClick={sendNewTag}>SEND</Button>
+          </AdminModal>
+          {movie.id === 0
+            ?<AdminDuration/>
+            :null
+          }
+        </AdminBox>
+      </AdminContainer>
       <AdminBox>
+        <AdminFileInput/>
         <AdminDescription value={movie.description}/>
-        <Button onClick={sendMovie} variant="contained">submit</Button>
       </AdminBox>
+      <Button onClick={sendMovie} variant="contained">submit</Button>
     </AdminLyout>
   );
 }
