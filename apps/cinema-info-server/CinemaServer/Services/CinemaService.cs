@@ -67,6 +67,7 @@ namespace CinemaServer.Services
             {
                 movie.Tags = new List<Tag>();
                 movie.Sessions = new List<Session>();
+                FileStorageService.DelImg(movie.NameImg);
                 Context.Remove(movie);                
                 Context.SaveChanges();
                 return true;

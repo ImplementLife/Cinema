@@ -1,4 +1,4 @@
-﻿namespace CinemaServer.Services.Новая_папка
+﻿namespace CinemaServer.Services.InterfaceServices
 {
     public interface IUpload
     {
