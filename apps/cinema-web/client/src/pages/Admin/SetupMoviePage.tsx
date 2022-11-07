@@ -14,7 +14,7 @@ import AdminBox from '../../components/Admin/re-use/AdminBox';
 import AdminModal from '../../components/Admin/re-use/AdminModal';
 import { useNavigate } from 'react-router-dom';
 
-const CreateMoviePage: FC = () => {
+const SetupMoviePage: FC = () => {
   const movie = useAppSelector(state => state.createMovieSlice.movie)
   const newTag = useAppSelector(state => state.createMovieSlice.newTag)
   const isUpdate = useAppSelector(state => state.createMovieSlice.isUpdate)
@@ -87,6 +87,10 @@ const CreateMoviePage: FC = () => {
           />
         </AdminBox>
         <AdminBox>
+          {movie.id === 0
+            ?<AdminDuration/>
+            :null
+          }
           <AdminTags
             openModal={handleOpen}
           />
@@ -101,10 +105,6 @@ const CreateMoviePage: FC = () => {
             />
             <Button onClick={sendNewTag}>SEND</Button>
           </AdminModal>
-          {movie.id === 0
-            ?<AdminDuration/>
-            :null
-          }
         </AdminBox>
       </AdminContainer>
       <AdminBox>
@@ -115,4 +115,4 @@ const CreateMoviePage: FC = () => {
     </AdminLyout>
   );
 }
-export default CreateMoviePage;
+export default SetupMoviePage;

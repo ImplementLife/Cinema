@@ -12,7 +12,9 @@ const AdminBox: FC<IAdminBox> = ({children}) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        minHeight:'160px',
         width: '100%',
         padding: 1,
         '& > :not(style)': { m: 1 },

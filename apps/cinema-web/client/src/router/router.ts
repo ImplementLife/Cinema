@@ -1,6 +1,6 @@
 import { RouterTypes } from '../models/RouterTypes';
 import MainPage from "../pages/Public/MainPage";
-import CreateMoviePage from "../pages/Admin/CreateMoviePage";
+import SetupMoviePage from "../pages/Admin/SetupMoviePage";
 import AdminMoviesPage from '../pages/Admin/AdminMoviesPage';
 import AdminCinemaPage from '../pages/Admin/AdminCinemaPage';
 import MoviePage from '../pages/Public/MoviePage';
@@ -13,7 +13,7 @@ export const publicRoutes: RouterTypes[] = [
 
 export const adminRoutes: RouterTypes[] = [
   {path: '/admin/movies', element: AdminMoviesPage},
-  {path: '/admin/movie', element: CreateMoviePage},
+  {path: '/admin/movie', element: SetupMoviePage},
   {path: '/admin/halls', element: CinemaHallsList},
   {path: '/admin/hall', element: AdminCinemaPage},
 ]

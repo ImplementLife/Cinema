@@ -30,7 +30,7 @@ import { createMovieSlice } from '../../redux-toolkit/reducers/createMovieSlice'
 const AdminMoviesPage: FC = () => {
   const dispatch = useAppDispatch()
   const {updateMovie, setMode, setID} = createMovieSlice.actions
-  const {page, rowsPerPage} = useAppSelector(state => state.pageSlice)
+  const {page, rowsPerPage} = useAppSelector(state => state.tableSlice)
   const {data: rows, isLoading, error} = adminAPI.useGetAllMoviesQuery('')
   const [trigger] = adminAPI.useLazyGetMovieToUpdateQuery()
   const [deleteMovie] = adminAPI.useDeleteMovieMutation()

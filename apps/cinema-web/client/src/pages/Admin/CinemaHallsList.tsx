@@ -18,7 +18,7 @@ import { useAppSelector } from "../../hooks/redux";
 
 const CinemaHallsList: FC = () => {
   const {data: rows, isLoading, error} = adminAPI.useGetAllHallsQuery('')
-  const {page, rowsPerPage} = useAppSelector(state => state.pageSlice)
+  const {page, rowsPerPage} = useAppSelector(state => state.tableSlice)
 
   return (
     <AdminLyout>

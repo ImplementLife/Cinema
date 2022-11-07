@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Table,  TableContainer, TableFooter, TablePagination, TableRow, Paper, TableCell, TableBody} from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
-import {pageSlice} from '../../../redux-toolkit/reducers/AdminPageSlice';
+import {tableSlice} from '../../../redux-toolkit/reducers/AdminTableSlice';
 import { IMovieAdminTable } from '../../../models/MovieDTO';
 
 interface IAdminTable {
@@ -11,8 +11,8 @@ interface IAdminTable {
 
 const AdminTable: FC<IAdminTable> = ({children, rows}) => {
 
-  const {page, rowsPerPage} = useAppSelector(state => state.pageSlice)
-  const {setPage, setRowsPerPage} = pageSlice.actions;
+  const {page, rowsPerPage} = useAppSelector(state => state.tableSlice)
+  const {setPage, setRowsPerPage} = tableSlice.actions;
   const dispatch = useAppDispatch()
 
   const handleChangePage = (
