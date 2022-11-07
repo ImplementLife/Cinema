@@ -13,8 +13,8 @@ export const movieAPI = createApi({
       })
     }),
     getMovie: build.query<IMovieDTO, string> ({
-      query: (path) => ({
-        url: path,
+      query: (id) => ({
+        url: `main/movie${id}`,
       })
     }),
     

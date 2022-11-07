@@ -11,8 +11,7 @@ const PosterUI: FC<IPosterUIProps> = ({movie}) => {
     <div className="movie__info-colm1">
         <div className="poster__container">
           <div className="poster__holder"></div>
-          {/* <img src={URL + '/resources/images/' + movie.image} alt="woops" title={movie.name} /> */}
-          <img className='poster' src={movie.image} alt="woops" title={movie.name} />
+          <img className='poster' src={URL + '/resources/images/' + movie.nameImg} alt="woops" title={movie.name} />
         </div>
         <div className='trailer__container'>
           <a 

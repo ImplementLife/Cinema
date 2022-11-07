@@ -5,9 +5,10 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 interface IAdminDescriptionProps {
+  value: string;
 }
 
-const AdminDescription: FC<IAdminDescriptionProps> = () => {
+const AdminDescription: FC<IAdminDescriptionProps> = ({value}) => {
 
   const {setDesc} = createMovieSlice.actions
   const dispatch = useAppDispatch()
@@ -26,6 +27,7 @@ const AdminDescription: FC<IAdminDescriptionProps> = () => {
             width: "100%",
             maxWidth: "800px",
         }}
+          value={value}
           theme='snow'
           onChange={change}
       />

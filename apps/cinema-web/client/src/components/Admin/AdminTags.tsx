@@ -15,11 +15,8 @@ const AdminTags: FC<IAdminTags> = ({openModal}) => {
   const dispatch = useAppDispatch()
   const {setTags} = createMovieSlice.actions
 
-  
-
   const onChange = (event: SyntheticEvent<Element, Event>, value: ITagDTO[], reason: AutocompleteChangeReason,) => {
     reason = 'selectOption'
-    console.log(value);
     dispatch(setTags(value))
   }
 

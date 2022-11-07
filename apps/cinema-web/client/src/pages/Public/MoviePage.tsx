@@ -3,14 +3,13 @@ import { useLocation } from 'react-router-dom';
 import { movieAPI } from '../../services/MovieService';
 import Loader from '../../components/UI/Loader/Loader';
 import Error from '../../components/UI/Alert/Error';
-import { IMovieDTO } from '../../models/MovieDTO';
 import BreadCrumbs from '../../components/Main/MoviePageUI/BreadCrumbsUI';
 import PosterUI from '../../components/Main/MoviePageUI/PosterUI';
 import MobileUI from '../../components/Main/MoviePageUI/MobileUI';
 import DescUI from '../../components/Main/MoviePageUI/DescUI';
 import SessionUI from '../../components/Main/MoviePageUI/SessionUI';
 
-// const movie: IMovieDTO = {
+// const movie = {
 //   name: 'Movie',
 //   description: '<h1>Movie Desc</h1>',
 //   id: 1,
@@ -29,7 +28,7 @@ import SessionUI from '../../components/Main/MoviePageUI/SessionUI';
 
 const MoviePage: FC = () => {
   const location = useLocation();
-  const {data: movie, isLoading, error} = movieAPI.useGetMovieQuery(location.pathname)
+  const {data: movie, isLoading, error} = movieAPI.useGetMovieQuery(location.search)
 
   return (
     <div className='movie__container'>

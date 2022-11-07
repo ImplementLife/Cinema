@@ -10,7 +10,7 @@ const MobileUI: FC<IMovieMobileProps> = ({movie}) => {
   return (
     <div className="mobile">
       <div className="mobile__jumbo">
-        <div className="bg" style={{backgroundImage:`url(${URL}/resources/images/${movie.image})`}}></div>
+        <div className="bg" style={{backgroundImage:`url(${URL}/resources/images/${movie.nameImg})`}}></div>
         <a
           rel="noopener noreferrer" 
           target="_blank" 

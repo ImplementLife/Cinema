@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Table,  TableContainer, TableFooter, TablePagination, TableRow, Paper} from '@mui/material';
+import { Table,  TableContainer, TableFooter, TablePagination, TableRow, Paper, TableCell, TableBody} from '@mui/material';
 import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
 import {pageSlice} from '../../../redux-toolkit/reducers/AdminPageSlice';
 import { IMovieAdminTable } from '../../../models/MovieDTO';
@@ -29,6 +29,12 @@ const AdminTable: FC<IAdminTable> = ({children, rows}) => {
     dispatch(setPage(0));
   };
 
+    // Avoid a layout jump when reaching the last page with empty rows.
+    let emptyRows = 0
+    if (rows !== undefined) {
+      emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    }
+
   return (
     <TableContainer 
       component={Paper}
@@ -37,9 +43,14 @@ const AdminTable: FC<IAdminTable> = ({children, rows}) => {
         padding: '10px',
       }}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-
-        {children}
-
+        <TableBody>
+          {children}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )}
+        </TableBody>
         <TableFooter>
           <TableRow>
             {rows && 

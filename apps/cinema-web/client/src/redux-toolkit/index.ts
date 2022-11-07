@@ -15,7 +15,9 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => 
-      getDefaultMiddleware().concat(movieAPI.middleware)
+      getDefaultMiddleware()
+      .concat(movieAPI.middleware)
+      .concat(adminAPI.middleware)
   })
 }
 
