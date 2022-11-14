@@ -21,8 +21,8 @@ const AdminDuration: FC<IAdminDurationProps> = () => {
         label="Тривалість"
         type="time"
         defaultValue="00:00"
-        style={{width: '100%', maxWidth: 388}}
         onChange={change}
+        fullWidth
         InputLabelProps={{
           shrink: true,
         }}

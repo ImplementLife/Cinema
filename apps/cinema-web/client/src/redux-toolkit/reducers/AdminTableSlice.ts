@@ -10,7 +10,7 @@ const initialState: IPageState = {
   rowsPerPage: 5
 }
 
-export const pageSlice = createSlice({
+export const tableSlice = createSlice({
   name: 'page',
   initialState,
   reducers: {
@@ -23,4 +23,4 @@ export const pageSlice = createSlice({
   }
 });
 
-export default pageSlice.reducer;
+export default tableSlice.reducer;

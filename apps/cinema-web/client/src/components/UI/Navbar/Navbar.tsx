@@ -6,11 +6,11 @@ import { ButtonGroup, Button } from '@mui/material';
 const Navbar: FC = () => {
   return (
     <div className='navbar-content'>
-      <Link to='/main'>
+      <Link to='/main/movies'>
         <div className='navbar-logo'></div>
       </Link>
       <ButtonGroup>
-        <Link to='/main'>
+        <Link to='/main/movies'>
           <Button>Main</Button>
         </Link>
         <Link to='/admin/movies'>

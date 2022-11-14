@@ -3,11 +3,13 @@ import { ICreateMovieDTO, ITagDTO } from '../../models/MovieDTO';
 
 interface ICreateMovie {
   movie: ICreateMovieDTO;
-  newTag: string;
+  newTag: ITagDTO;
+  isUpdate: boolean;
 }
 
 const initialState: ICreateMovie = {
   movie: {
+    id: 0,
     name: '',
     description: '',
     trailerURL: '',
@@ -16,7 +18,8 @@ const initialState: ICreateMovie = {
     imageFile: null,
     tags: [],
   },
-  newTag: '',
+  newTag: {name: '', id: 0},
+  isUpdate: false,
 };
 
 export const createMovieSlice = createSlice({
@@ -42,8 +45,17 @@ export const createMovieSlice = createSlice({
       state.movie.tags = [...action.payload]
     },
     addNewTag: (state, action: PayloadAction<string>) =>{
-      state.newTag = action.payload;
-    }
+      state.newTag.name = action.payload;
+    },
+    updateMovie: (state, action: PayloadAction<ICreateMovieDTO>) =>{
+      state.movie = action.payload;
+    },
+    setMode: (state, action: PayloadAction<boolean>) =>{
+      state.isUpdate = action.payload;
+    },
+    setID: (state, action: PayloadAction<number>) =>{
+      state.movie.id = action.payload;
+    },
   }
 })
 
