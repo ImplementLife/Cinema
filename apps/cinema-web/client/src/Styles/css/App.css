@@ -77,24 +77,16 @@ ul {
 }
 
 .navbar-logo {
-  height: 8vh;
-  width: 8vh;
+  height: 60px;
+  width: 60px;
   background: url("/src/pictures/img/cinema.png") no-repeat;
   background-position: center;
   background-size: cover;
   pointer-events: none;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
   -webkit-user-select: none;
-  /* Chrome/Safari/Opera */
-  /* Konqueror */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
-                                  not supported by any browser */
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .navbar-items {
@@ -103,7 +95,7 @@ ul {
 }
 
 .error-wrapper {
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
@@ -154,7 +146,7 @@ ul {
   height: 75px;
   border: 10px solid rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  border-left-color: #252531;
+  border-left-color: rgba(37, 37, 49, 0.95);
   -webkit-animation: loader 2s linear infinite;
           animation: loader 2s linear infinite;
 }
@@ -724,4 +716,77 @@ ul {
   border-radius: 10px;
   background: transparent;
   border: 1px solid #000000;
+}
+
+.left-swiper, .right-swiper {
+  position: fixed;
+  width: 77px;
+  height: 77px;
+  top: calc(50% - 44px);
+  border-radius: 50%;
+  background-color: rgba(37, 37, 49, 0.7);
+  border: 6px solid rgba(10, 160, 240, 0.7);
+  left: 16px;
+  cursor: pointer;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: border-color 225ms;
+  transition: border-color 225ms;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  z-index: 995;
+}
+
+.right-swiper {
+  left: auto;
+  right: 16px;
+}
+
+.left-swiper::before, .right-swiper::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-style: solid;
+  margin-left: 12px;
+  border-color: #0aa0f0;
+  border-width: 4px 4px 0 0;
+  -webkit-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+.left-swiper::after, .right-swiper::after {
+  content: "";
+  position: fixed;
+  width: 104px;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
+.right-swiper::before {
+  margin-left: -12px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.right-swiper::after {
+  width: 104px;
+  left: auto;
+  right: 0;
+}
+
+/**                  media                     */
+@media screen and (max-width: 750px) {
+  .left-swiper, .right-swiper {
+    display: none;
+  }
 }

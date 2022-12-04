@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Table,  TableContainer, TableFooter, TablePagination, TableRow, Paper} from '@mui/material';
-import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import {pageSlice} from '../../redux-toolkit/reducers/AdminPageSlice';
-import { IMovieAdminTable } from '../../models/MovieDTO';
+import { useAppSelector, useAppDispatch } from '../../../hooks/redux';
+import {pageSlice} from '../../../redux-toolkit/reducers/AdminPageSlice';
+import { IMovieAdminTable } from '../../../models/MovieDTO';
 
 interface IAdminTable {
   children: React.ReactElement | React.ReactNode;

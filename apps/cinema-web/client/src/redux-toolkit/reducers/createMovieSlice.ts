@@ -11,11 +11,12 @@ const initialState: ICreateMovie = {
     name: '',
     description: '',
     trailerURL: '',
-    movieDuration: 0,
-    image: [],
+    duration: 0,
+    imageName: '',
+    imageFile: null,
     tags: [],
   },
-  newTag: ''
+  newTag: '',
 };
 
 export const createMovieSlice = createSlice({
@@ -29,15 +30,15 @@ export const createMovieSlice = createSlice({
       state.movie.description = action.payload;
     },
     setDuration: (state, action: PayloadAction<number>) => {
-      state.movie.movieDuration = action.payload;
+      state.movie.duration = action.payload;
     },
     setTrailer: (state, action: PayloadAction<string>) => {
       state.movie.trailerURL = action.payload;
     },
-    setImage: (state, action: PayloadAction<string>) => {
-      state.movie.image = [action.payload];
+    setImage: (state, action: PayloadAction<File>) => {
+      state.movie.imageFile = action.payload;
     },
-    setIags: (state, action: PayloadAction<ITagDTO[]>) => {
+    setTags: (state, action: PayloadAction<ITagDTO[]>) => {
       state.movie.tags = [...action.payload]
     },
     addNewTag: (state, action: PayloadAction<string>) =>{

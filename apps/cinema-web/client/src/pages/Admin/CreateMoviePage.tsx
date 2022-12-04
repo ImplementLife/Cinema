@@ -1,16 +1,17 @@
 import { FC, useState } from 'react';
 import AdminDescription from '../../components/Admin/AdminDescription';
-import AdminLyout from '../../components/Admin/AdminLyout';
+import AdminLyout from '../../components/Admin/re-use/AdminLyout';
 import AdminFileInput from '../../components/Admin/AdminFileInput';
-import AdminTextField from '../../components/Admin/AdminTextField';
+import AdminTextField from '../../components/Admin/re-use/AdminTextField';
 import AdminDuration from '../../components/Admin/AdminDuration';
 import { Button } from '@mui/material';
 import {createMovieSlice} from '../../redux-toolkit/reducers/createMovieSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
 import AdminTags from '../../components/Admin/AdminTags';
-import AdminBox from '../../components/Admin/AdminBox';
-import AdminModal from '../../components/Admin/AdminModal';
+import AdminBox from '../../components/Admin/re-use/AdminBox';
+import AdminModal from '../../components/Admin/re-use/AdminModal';
+import { ITagDTO } from '../../models/MovieDTO';
 
 const CreateMoviePage: FC = () => {
   const movie = useAppSelector(state => state.createMovieSlice.movie)
@@ -34,18 +35,22 @@ const CreateMoviePage: FC = () => {
     dispatch(addNewTag(e.target.value))
   }
 
-  const sendMovie = async () => {
-    await createMovie(movie)
-    .unwrap()
-    .then((payload) => {
-      let formData = new FormData();
-      formData.append('mainImage', movie.image[0]);
-      formData.append('id', payload);
-    })
+  const sendMovie = () => {
+    if (movie.imageFile !== null) {
+      const formData = new FormData();
+      formData.append('image', movie.imageFile);
+      formData.append('movie', JSON.stringify(movie));
+      console.log(formData);
+      createMovie(formData);
+    }
   }
 
   const sendNewTag = () => {
-    createTag(newTag)
+    const obj: ITagDTO = {
+      name: newTag,
+      id: 0
+    }
+    createTag(obj)
     handleClose()
   }
 

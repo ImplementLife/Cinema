@@ -21,7 +21,7 @@ const AppRouter: FC = () => {
       )}
       <Route
         path="*"
-        element={<Navigate to="/main" replace />}
+        element={<Navigate to="/main/movies" replace />}
       />
     </Routes>
   );

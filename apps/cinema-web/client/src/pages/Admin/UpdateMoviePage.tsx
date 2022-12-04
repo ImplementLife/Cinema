@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AdminLyout from '../../components/Admin/AdminLyout';
+import AdminLyout from '../../components/Admin/re-use/AdminLyout';
 
 interface IUpdateMovieProps {
 }
