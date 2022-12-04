@@ -1,6 +1,6 @@
 import { URL } from '../global/url';
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
-import { IPreviewMovieDTO } from '../models/MovieDTO';
+import { IPreviewMovieDTO, IMovieDTO } from '../models/MovieDTO';
 
 export const movieAPI = createApi({
   reducerPath:'movieAPI',
@@ -10,6 +10,11 @@ export const movieAPI = createApi({
     fetchPreviewMovie: build.query<IPreviewMovieDTO[], string> ({
       query: () => ({
         url: '/main/movies',
+      })
+    }),
+    getMovie: build.query<IMovieDTO, string> ({
+      query: (id) => ({
+        url: `main/movie${id}`,
       })
     }),
     

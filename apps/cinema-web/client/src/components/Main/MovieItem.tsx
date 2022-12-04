@@ -19,7 +19,7 @@ const MovieItem: FC<IMovieItemProps> = ({movie}) => {
 
       <Link
         className='main__item-name'
-        to={'/movies/' + movie.id}
+        to={`/main/movie?id=${movie.id}`}
         title={movie.name}
       >
         <span>{movie.name}</span>

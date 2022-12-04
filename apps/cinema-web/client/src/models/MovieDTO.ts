@@ -2,12 +2,13 @@ export interface IMovieDTO {
   name: string;
   id: number;
   description: string;
-  image: string;
+  nameImg: string;
   trailerURL: string;
   tags: ITagDTO[];
   duration: number;
 }
 export interface ICreateMovieDTO {
+  id: number;
   name: string;
   description: string;
   trailerURL: string;

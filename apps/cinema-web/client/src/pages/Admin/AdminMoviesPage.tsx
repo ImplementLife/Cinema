@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import { Button, ButtonGroup, TableBody, TableCell, TableRow, Tooltip, IconButton,} from '@mui/material';
+import { Button, ButtonGroup, TableCell, TableRow, Tooltip, IconButton,} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AdminLyout from '../../components/Admin/re-use/AdminLyout';
 import AdminTable from '../../components/Admin/re-use/AdminTable';
 import LoaderSmall from '../../components/UI/Loader/LoaderSmall';
 import Error from '../../components/UI/Alert/Error';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
 import { useNavigate } from 'react-router-dom';
+import { createMovieSlice } from '../../redux-toolkit/reducers/createMovieSlice';
 
 // function createData (name:string, id:number) {
 //   return { name, id };
@@ -27,21 +28,33 @@ import { useNavigate } from 'react-router-dom';
 // ].sort((a, b) => (a.name < b.name ? -1 : 1));
 
 const AdminMoviesPage: FC = () => {
-
-  const {page, rowsPerPage} = useAppSelector(state => state.pageSlice)
+  const dispatch = useAppDispatch()
+  const {updateMovie, setMode, setID} = createMovieSlice.actions
+  const {page, rowsPerPage} = useAppSelector(state => state.tableSlice)
   const {data: rows, isLoading, error} = adminAPI.useGetAllMoviesQuery('')
+  const [trigger] = adminAPI.useLazyGetMovieToUpdateQuery()
+  const [deleteMovie] = adminAPI.useDeleteMovieMutation()
   const navigate = useNavigate()
 
-  // Avoid a layout jump when reaching the last page with empty rows.
-  let emptyRows = 0
-  if (rows !== undefined) {
-    emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const handleUpdateMovie = async (id: number) => {
+    trigger(id)
+    .unwrap()
+    .then((res) => {
+      dispatch(updateMovie(res))
+      dispatch(setMode(true))
+      navigate(`/admin/movie?id=${id}`)
+    })
+    .catch((err) => console.error(err))
+
+    // dispatch(setID(1))
+    // dispatch(setMode(true))
+    // navigate(`/admin/movie?id=${id}`)
   }
   return (
     <AdminLyout>
       <AdminLyout>
           <Tooltip title="Create movie">
-            <IconButton onClick={() => navigate('/admin/create')}>
+            <IconButton onClick={() => navigate('/admin/movie')}>
               <AddIcon/>
             </IconButton>
           </Tooltip>
@@ -52,34 +65,29 @@ const AdminMoviesPage: FC = () => {
         Error to load data from server
         </Error>
       }
-      {rows && <AdminTable rows={rows}>
-        <TableBody>
-            { (rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  {row.id}
-                </TableCell>
-                <TableCell style={{ width: 160 }} align="right">
-                  <ButtonGroup>
-                    <Button>Update</Button>
-                    <Button color='error' >Delete</Button>
-                  </ButtonGroup>
-                </TableCell>
-              </TableRow>
-            ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-      </AdminTable>}
+      {rows && 
+        <AdminTable rows={rows}>
+          { (rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
+            <TableRow key={row.id}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                {row.id}
+              </TableCell>
+              <TableCell style={{ width: 160 }} align="right">
+                <ButtonGroup>
+                  <Button onClick={() => handleUpdateMovie(row.id)}>Update</Button>
+                  <Button onClick={() => deleteMovie(row.id)} color='error'>Delete</Button>
+                </ButtonGroup>
+              </TableCell>
+            </TableRow>
+          ))}
+        </AdminTable>
+      }
     </AdminLyout>
   );
 };
