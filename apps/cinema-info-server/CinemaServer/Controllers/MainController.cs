@@ -1,5 +1,4 @@
 ﻿using CinemaServer.Data;
-using CinemaServer.Data.Interface;
 using CinemaServer.Entities;
 using CinemaServer.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaServer.Controllers
 {
-
-    [ApiController]
+    [ApiController]    
     public class MainController : Controller
     {
         CinemaService CinemaService;       
@@ -19,12 +17,19 @@ namespace CinemaServer.Controllers
         [HttpGet("/Main")]
         public IActionResult Main()
         {
+            //CinemaService.AutoNamingUpdate();
             return Json("Maine");
         }
-        [HttpGet("/Main/Movies")]       
+        [HttpGet("/main/movies")]       
         public IActionResult Movies()
         {            
             return Json(CinemaService.MainCinema());
         }
+        [HttpGet("/main/movie")]
+        public IActionResult MovieID([FromQuery]int id)
+        {
+            return Json(CinemaService.GetMovieById(id));
+        }
+
     }
 }

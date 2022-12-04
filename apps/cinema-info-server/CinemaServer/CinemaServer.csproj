@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Compile Remove="Migrations\20221011134818_InitMigration.cs" />
+    <Compile Remove="Migrations\20221011134818_InitMigration.Designer.cs" />
+    <Compile Remove="Migrations\20221011135017_InitMigration1.cs" />
+    <Compile Remove="Migrations\20221011135017_InitMigration1.Designer.cs" />
+    <Compile Remove="Migrations\20221012144827_AddTimeMinutesInTableMovie.cs" />
+    <Compile Remove="Migrations\20221012144827_AddTimeMinutesInTableMovie.Designer.cs" />
+    <Compile Remove="Migrations\20221013131507_Add_Hall_And_Session.cs" />
+    <Compile Remove="Migrations\20221013131507_Add_Hall_And_Session.Designer.cs" />
+    <Compile Remove="Migrations\20221013131917_Correct-Migration.cs" />
+    <Compile Remove="Migrations\20221013131917_Correct-Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221013132817_Create_Ticket.cs" />
+    <Compile Remove="Migrations\20221013132817_Create_Ticket.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +28,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\resources\images\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
