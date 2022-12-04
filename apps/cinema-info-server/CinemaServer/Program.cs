@@ -6,7 +6,9 @@ using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using CinemaServer.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
-
+//Add Logger
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
