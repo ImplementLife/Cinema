@@ -6,7 +6,7 @@ import { setupStore } from './redux-toolkit';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './services/global/theme';
+import { theme } from './global/theme';
 
 const store = setupStore();
 

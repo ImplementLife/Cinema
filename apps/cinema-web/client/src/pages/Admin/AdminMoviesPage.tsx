@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, ButtonGroup, TableBody, TableCell, TableRow, Fab,} from '@mui/material';
+import { Button, ButtonGroup, TableBody, TableCell, TableRow, Tooltip, IconButton,} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AdminLyout from '../../components/Admin/AdminLyout';
 import AdminTable from '../../components/Admin/AdminTable';
@@ -7,7 +7,7 @@ import LoaderSmall from '../../components/UI/Loader/LoaderSmall';
 import Error from '../../components/UI/Error/Error';
 import { useAppSelector } from '../../hooks/redux';
 import { adminAPI } from '../../services/AdminService';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // function createData (name:string, id:number) {
 //   return { name, id };
@@ -30,6 +30,7 @@ const AdminMoviesPage: FC = () => {
 
   const {page, rowsPerPage} = useAppSelector(state => state.pageSlice)
   const {data: rows, isLoading, error} = adminAPI.useGetAllMoviesQuery('')
+  const navigate = useNavigate()
 
   // Avoid a layout jump when reaching the last page with empty rows.
   let emptyRows = 0
@@ -39,11 +40,11 @@ const AdminMoviesPage: FC = () => {
   return (
     <AdminLyout>
       <AdminLyout>
-        <Link to='/admin/create'>
-          <Fab color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </Link>
+          <Tooltip title="Create movie">
+            <IconButton onClick={() => navigate('/admin/create')}>
+              <AddIcon/>
+            </IconButton>
+          </Tooltip>
       </AdminLyout>
       {isLoading && <LoaderSmall/>}
       {error && 

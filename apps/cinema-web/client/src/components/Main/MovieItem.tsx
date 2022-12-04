@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { URL } from '../../services/global/values';
+import { URL } from '../../global/url';
 import { Link } from 'react-router-dom';
 import { IPreviewMovieDTO } from '../../models/MovieDTO';
 
